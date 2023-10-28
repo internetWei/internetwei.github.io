@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="LLDynamicLaunchScreen的设计思路"><meta name="keywords" content="Objc,开源框架"><meta name="author" content="布多"><meta name="copyright" content="布多"><title>LLDynamicLaunchScreen的设计思路 | 布多的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f0d94d3f99211c3546490e469f6ecbd8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><meta name="generator" content="Hexo 6.3.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%90%AF%E5%8A%A8%E5%9B%BE%E7%9A%84%E5%9D%91"><span class="toc-number">2.</span> <span class="toc-text">关于启动图的坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLDynamicLaunchScreen%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">LLDynamicLaunchScreen介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ELLDynamicLaunchScreen%E5%92%8CDynamicLaunchImage"><span class="toc-number">4.</span> <span class="toc-text">关于LLDynamicLaunchScreen和DynamicLaunchImage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLDynamicLaunchScreen%E7%9A%84%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="toc-number">5.</span> <span class="toc-text">LLDynamicLaunchScreen的具体思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84"><span class="toc-number">6.</span> <span class="toc-text">不足之处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLDynamicLaunchScreen%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="toc-number">7.</span> <span class="toc-text">LLDynamicLaunchScreen效果图</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="images/universal_avatar.png"></div><div class="author-info__name text-center">布多</div><div class="author-info__description text-center">前进 前进 不择手段的前进</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">12</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">7</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(images/blog_top_image.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">布多的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/about">关于</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">LLDynamicLaunchScreen的设计思路</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-03-07</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/">移动开发</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">2k</span><span class="post-meta__separator">|</span><span>阅读时长: 6 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;动态修改iPhone上APP的启动图，将它修改为用户喜欢的图片，这样用户每次打开APP第一眼就可以看到自己喜欢的图片，这对于用户来说是不是挺爽呢。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;其实这个想法我很早之前就萌发了(大概是2019年上半年)，有一次我发现苹果提供了方法可以动态修改APP的Logo，就萌发了动态修改启动图的想法，当时查阅了一些资料，然后自己通过实践发现确实可以不更新APP动态修改启动图。不过因为当时公司的APP并不需要这个功能，而且大部分的软件厂商也并没有注意到这一块的用户体验，所有的APP也都不支持用户自定义启动图，所以当时也就没继续往下深究了。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;时间眨眼就来到了2020年下半年，当时因为公司的APP要实现暗黑模式，但是这个APP已经更新迭代了3年多，在所有页面添加修改色值的代码工作量太大，而且我们的APP支持iOS10但是系统的暗黑API最低支持iOS13，然后自己就写了一个暗黑框架<a target="_blank" rel="noopener" href="https://github.com/internetWei/llDark">LLDark</a>，当APP集成好这个暗黑框架后，发现APP强行切换成一个模式后，APP的启动图却没有跟随APP的模式变化，而是跟随系统模式，简单的说就是APP强行设置成了浅色模式，但是系统是深色模式，当用户打开APP时启动图会显示深色(系统)的启动图而不是浅色(APP)的启动图。对于大部分的人来说可能觉得这个问题可以跳过，因为大部分的APP也都这样，但是我是一个完美主义者，为了能让用户有一个完美的体验，然后我就写了<a target="_blank" rel="noopener" href="https://github.com/internetWei/LLDynamicLaunchScreen">LLDynamicLaunchScreen</a>，它最初的目的只是为了配合<a target="_blank" rel="noopener" href="https://github.com/internetWei/llDark">LLDark</a>实现完美的暗黑模式，后面考虑到可能有APP注意到了这一块的用户体验想要实现动态修改启动图，所以就把它抽离出来并开源了<a target="_blank" rel="noopener" href="https://github.com/internetWei/LLDynamicLaunchScreen">LLDynamicLaunchScreen</a>。</p>
+<h3 id="关于启动图的坑"><a href="#关于启动图的坑" class="headerlink" title="关于启动图的坑"></a>关于启动图的坑</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;启动图莫名其妙变成黑色的这个BUG已经有很多APP遇到了，我公司的APP也遇到了，我手机上的微信也遇到了，基本可以确定是苹果的BUG。如图1.1(这是我在手机上录制的，录制时间为2021年3月7号)，大家可以发现我在打开微信APP时屏幕是一片黑色的，我拿同事的手机测试了发现他的手机打开微信APP启动图依旧是原来的一个地球和一个人，所以确定不是微信把启动图换成了黑色(同事手机上的微信版本和我手机上的微信版本是一致的，而且我们的系统版本号也一致)。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://gitee.com/internetWei/images/raw/master/uPic/202103061844.gif"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">图1.1</td>
+</tr>
+</tbody></table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/internetWei/LLDynamicLaunchScreen">LLDynamicLaunchScreen</a>支持修复如上问题，您只需要将它集成到您的工程中即可，什么事情都不用做，图2.1这样的情况将可能不会出现在您的APP中，最坏的情况是用户第一次打开APP时可能会出现。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://gitee.com/internetWei/images/raw/master/uPic/202102141921.jpg"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">图2.1</td>
+</tr>
+</tbody></table>
+<h3 id="LLDynamicLaunchScreen介绍"><a href="#LLDynamicLaunchScreen介绍" class="headerlink" title="LLDynamicLaunchScreen介绍"></a>LLDynamicLaunchScreen介绍</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;<code>LLDynamicLaunchScreen</code>除了支持上述提到的自动修复启动图莫名其妙变成黑色的BUG，还支持运行时动态修改APP的任意启动图，仅需一行代码即可。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;目前市场上并没有和<code>LLDynamicLaunchScreen</code>类似的框架，github上有一个<code>DynamicLaunchImage</code>框架也实现了动态替换启动图的功能，但是我并不建议您使用它，具体原因我会在下面的对比中详细描述。</p>
+<h3 id="关于LLDynamicLaunchScreen和DynamicLaunchImage"><a href="#关于LLDynamicLaunchScreen和DynamicLaunchImage" class="headerlink" title="关于LLDynamicLaunchScreen和DynamicLaunchImage"></a>关于LLDynamicLaunchScreen和DynamicLaunchImage</h3><ol>
+<li><p><code>LLDynamicLaunchScreen</code>是我开发的一款用于修复iOS上APP启动图异常和动态修改启动图的框架，它实现了如下功能:</p>
+<ol>
+<li>集成后自动修复APP启动图异常显示。</li>
+<li>集成者只需要一行代码即可修改启动图。</li>
+<li>支持修改任意类型的启动图(暗黑竖屏启动图、暗黑横屏启动图、浅色竖屏启动图、浅色横屏启动图)。</li>
+<li>当用户更新APP后自动恢复上一次设置的启动图。</li>
+<li>支持获取当前显示的启动图和任意类型的启动图。</li>
+</ol>
+</li>
+<li><p><code>DynamicLaunchImage</code>是百度团队开发的一款动态修改启动图的框架，它只实现了一个动态修改启动图的功能，而且当用户更新APP后，<code>DynamicLaunchImage</code>并没有记录用户上次的修改信息，它会导致用户更新版本后丢失之前设置的启动图，这是致命的；并且它也不支持单独修改暗黑系启动图或者单独修改浅色系启动图；最致命的是它的开发者并没有继续维护它，我提交了一个issues并没有人去跟进处理。所以建议您使用<a target="_blank" rel="noopener" href="https://github.com/internetWei/LLDynamicLaunchScreen">LLDynamicLaunchScreen</a>。</p>
+</li>
+</ol>
+<h3 id="LLDynamicLaunchScreen的具体思路"><a href="#LLDynamicLaunchScreen的具体思路" class="headerlink" title="LLDynamicLaunchScreen的具体思路"></a>LLDynamicLaunchScreen的具体思路</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;<code>LLDynamicLaunchScreen</code>它的核心功能其实就是替换系统本地的启动图，但是替换的过程中有如下的问题(只列举了一些比较重要的问题):</p>
+<ol>
+<li>替换系统本地的启动图但不能修改原名称，否则系统会重新生成启动图，这就需要知道本地的启动图名称对应的是哪个具体的启动图(例如本地启动图a.png代表的是深色竖屏启动图还是浅色坚屏启动图还是…)。</li>
+<li>为了实现自动修复启动图异常，需要在APP启动后根据storyboard文件生成一整套的启动图文件并且替换本地的启动图，开发过程中遇到一个问题不管在什么时候生成与系统相反模式的启动图总是失败(例如当前系统是浅色模式，那么在生成深色启动图时实际获取到的总是浅色启动图)，后面通过KVO的思想解决了这个难题，具体思路是利用运行时创建一个自定义的<code>UIViewControler</code>对象并将它与系统的<code>UIViewController</code>的isa指针进行互换，然后监听它的<code>viewDidAppear:</code>方法的实现，在这个方法里再去生成启动图就可以了，当监听完成后会自动释放创建的对象然后将isa指针还原回去。</li>
+<li>在iOS13以下的真机中没有启动图文件夹的读取和修改权限，针对这个问题确实愁了很多天，就在我想放弃iOS13以下系统可以动态修改启动图的想法前，我看到了<code>DynamicLaunchImage</code>的一篇实现文章，文章中提到它也遇到了这个问题，并且通过<code>moveItemAtPath: toPath: error:</code>这个方法解决了。经过测试发现确实可以变相的达到获取启动图信息并且替换启动图的功能，在这里感谢<code>DynamicLaunchImage</code>提供的思路。</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;具体的实现细节大家可以阅读<a target="_blank" rel="noopener" href="https://github.com/internetWei/LLDynamicLaunchScreen">LLDynamicLaunchScreen</a>源码，例如它是怎么在用户更新版本后自动还原至之前的设置。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;如果您有更好的意见或者发现有任何BUG，欢迎您提交<a target="_blank" rel="noopener" href="https://github.com/internetWei/LLDynamicLaunchScreen/issues">issues</a>或者联系我。</p>
+<h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;由于iOS系统的限制，更新APP后第一次打开会显示默认启动图，之后才会显示自定义的启动图。另外它暂时对iPad的支持性不是很好，因为iPad有多达10种启动图样式，建议不要要iPad中使用它，后续我会升级它支持iPad。<code>LLDynamicLaunchScreen</code>它不支持非LaunchScreen配置的启动图(现在应该没有APP没有使用LaunchScreen适配启动图了吧)。</p>
+<h3 id="LLDynamicLaunchScreen效果图"><a href="#LLDynamicLaunchScreen效果图" class="headerlink" title="LLDynamicLaunchScreen效果图"></a>LLDynamicLaunchScreen效果图</h3><table>
+<thead>
+<tr>
+<th align="center"><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/160c58e9014740029800c2ffc4752965~tplv-k3u1fbpfcp-zoom-1.image"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/internetWei/LLDynamicLaunchScreen">LLDynamicLaunchScreen</a></td>
+</tr>
+</tbody></table>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">布多</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://internetwei.github.io/2021/03/07/移动开发/LLDynamicLaunchScreen的设计思路/">https://internetwei.github.io/2021/03/07/移动开发/LLDynamicLaunchScreen的设计思路/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://internetwei.github.io">布多的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Objc/">Objc</a><a class="post-meta__tags" href="/tags/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">开源框架</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/03/08/%E4%BB%A3%E7%A0%81%E4%BA%BA%E7%94%9F/Markdown%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/"><i class="fa fa-chevron-left">  </i><span>Markdown语法手册</span></a></div></nav><div id="lv-container" data-id="city" data-uid="MTAyMC81MzU5Ny8zMDA3MA=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div><footer class="footer-bg" style="background-image: url(images/blog_top_image.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2023 By 布多</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

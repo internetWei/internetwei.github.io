@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Objc风格指南"><meta name="keywords" content="代码规范,Objc"><meta name="author" content="布多"><meta name="copyright" content="布多"><title>Objc风格指南 | 布多的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f0d94d3f99211c3546490e469f6ecbd8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><meta name="generator" content="Hexo 6.3.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E9%98%85%E8%AF%BB%E4%BD%93%E9%AA%8C%EF%BC%8C%E8%80%8C%E9%9D%9E%E5%86%99%E4%BB%A3%E7%A0%81%E7%9A%84%E4%BD%93%E9%AA%8C"><span class="toc-number">2.0.1.</span> <span class="toc-text">优化阅读体验，而非写代码的体验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B0%BD%E9%87%8F%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4"><span class="toc-number">2.0.2.</span> <span class="toc-text">与上下文尽量保持一致</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.</span> <span class="toc-text">命名风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.1.</span> <span class="toc-text">通用命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.2.</span> <span class="toc-text">类名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.3.</span> <span class="toc-text">分类命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.4.</span> <span class="toc-text">枚举命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.5.</span> <span class="toc-text">方法命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.6.</span> <span class="toc-text">协议命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%9F%A5%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.7.</span> <span class="toc-text">通知命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.8.</span> <span class="toc-text">常量命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.9.</span> <span class="toc-text">异常类命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.10.</span> <span class="toc-text">文件命名风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.0.11.</span> <span class="toc-text">注释风格</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">4.</span> <span class="toc-text">编码风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E9%A3%8E%E6%A0%BC"><span class="toc-number">5.</span> <span class="toc-text">结构风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-number">5.0.1.</span> <span class="toc-text">一个好的头文件例子：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">6.</span> <span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="images/universal_avatar.png"></div><div class="author-info__name text-center">布多</div><div class="author-info__description text-center">前进 前进 不择手段的前进</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">12</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">7</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(images/blog_top_image.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">布多的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/about">关于</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">Objc风格指南</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-08-07</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E4%BB%A3%E7%A0%81%E4%BA%BA%E7%94%9F/">代码人生</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">4.3k</span><span class="post-meta__separator">|</span><span>阅读时长: 14 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>制定风格指南主要的目的是统一团队的代码风格与样式，提高工作效率与阅读性还有维护性；<br>这篇文章虽然是OC风格指南，但是有些风格是所有编程语言通用的，另外它还参考了<a target="_blank" rel="noopener" href="https://github.com/alibaba/Alibaba-Java-Coding-Guidelines">阿里巴巴Java代码规范</a>，想不到吧。</p>
+<h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><h4 id="优化阅读体验，而非写代码的体验"><a href="#优化阅读体验，而非写代码的体验" class="headerlink" title="优化阅读体验，而非写代码的体验"></a>优化阅读体验，而非写代码的体验</h4><p>&nbsp;&nbsp;&nbsp; 代码库通常具有较长的生命周期，并且花在阅读代码上的时间也远多于编写代码的时间。所以我们应该明确一个目标：去优化别人阅读、维护我们代码时的体验，而不是优化写代码时的体验(<code>例如随便使用缩写进行编码，代码量变少了，但是增加了阅读和维护的难度</code>)。</p>
+<p>&nbsp;&nbsp;&nbsp; 适当的规范限制和标准不是消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的方式一起做事，进而提高工作效率，降低沟通成本。提高稳定性。</p>
+<h4 id="与上下文尽量保持一致"><a href="#与上下文尽量保持一致" class="headerlink" title="与上下文尽量保持一致"></a>与上下文尽量保持一致</h4><p>&nbsp;&nbsp;&nbsp; 尽量保持代码库中的风格样式一致。在整个代码库中始终保持一种风格可以让工程师更专注于其他(更重要的)问题。一致性还可以实现更好的自动化。</p>
+<p>&nbsp;&nbsp;&nbsp; 如果风格指南中没有说明，那么就按照代码库之前的风格样式或者参考 <code>Apple SDK</code> 的风格样式。</p>
+<h2 id="命名风格"><a href="#命名风格" class="headerlink" title="命名风格"></a>命名风格</h2><h4 id="通用命名风格"><a href="#通用命名风格" class="headerlink" title="通用命名风格"></a>通用命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 清晰和简洁(<code>好的名称应该是能自我描述的</code>)，简洁的原则是为了保持更好的清晰度和可读性，记住 <strong>不要本末倒置</strong>。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">// 移除一个对象。</span><br><span class="line">1. removeObject:</span><br><span class="line">// 使用指定字符串替换出现过的字符串。</span><br><span class="line">2. stringByReplacingOccurrencesOfString: withString:</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">// 要移除什么？</span><br><span class="line">1. remove:</span><br><span class="line">// 要将什么替换成什么？是全部都替换还是只替换第一个匹配的位置？</span><br><span class="line">2. replace(&quot;1&quot;, &quot;2&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 一致性：命名应该和上下文乃至全局保持一致性，相同类型或者具有相同作用方法的名称应该相同或类似。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">1. NSDictionary、NSArray、NSSet这些类中名叫 count 的方法所体现的作用都是一样的。</span><br><span class="line">2. 系统的一些代理方法和通知的名称也会刻意保持一致，</span><br><span class="line">   例如 `UIApplicationDelegate`协议中的 `applicationDidBecomeActive` 方法名</span><br><span class="line">   就和 `UIApplicationDidBecomeActiveNotification`通知的名称是一致的。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 禁止自我指涉：命名不要自我指涉(通知、掩码或常量等除外)。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">NSString</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">NSStringObject</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 禁止过度缩写和自创缩写，一些通用缩写名除外(例如ATM、GPS、max、min等)，具体请参考 <a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/APIAbbreviations.html#//apple_ref/doc/uid/20001285-BCIHCGAE">可接受的缩写词列表</a>。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Tips:</span><br><span class="line">阅读者可能来自不同的地方接受不同的教育和不同的文化，</span><br><span class="line">他们不一定会明白你写的缩写的意思。</span><br><span class="line"></span><br><span class="line">正例：</span><br><span class="line">setBackgroundColor</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">setBgColor</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 禁止使用无意义的拼音，国际通用名、地名、人名除外。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">Beijing、Alibaba</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">// 打折</span><br><span class="line">DaZhePromotion</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 代码和注释中避免使用任何语言的种族歧视性词语。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">secondary、main</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">slave、master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 禁止以new、alloc、copy、mutableCopy等关键字作为名称的开始部分。</p>
+</li>
+<li><p><strong>[必须]</strong> 由于 <strong>OC</strong> 没有命名空间的概念，所以全局名称(<code>类名、协议名、全局常量名、全局变量名、函数名、typedef名称</code>)必须添加前缀，前缀由3个及以上字符组成且全部大写。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Tips: </span><br><span class="line">由于系统保留任意两个字符作为前缀的使用权(NS、UI、CG、CF、CA、WK、MK、CI、NC等等)，</span><br><span class="line">为了避免和系统命名冲突，所以前缀至少由3个字符组成。</span><br><span class="line"></span><br><span class="line">正例：</span><br><span class="line">ZTYLoginViewController</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">ZTLoginViewController</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 如果某个全局名称(<code>例如函数名、通知名、协议方法名</code>)和某个类有所关联，那么请使用相关类名作为其前缀，否则请使用通用前缀。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">UIApplicationDidBecomeActiveNotification</span><br><span class="line">MAGUserLoginSuccessNotification</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 命名风格统一使用 <strong>驼峰命名方式</strong> ，局部变量名等特殊名称可以不遵守。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">totalRemain</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">total_remain</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 成员变量名称必须以_作为开始部分。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">_nameString</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">nameString</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 在给常量或变量命名时，请将表示类型的名词放在词尾，以提高辨识度。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">nameLabel、nameString</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 如果模块、接口、类、方法使用了某种模式，在命名时尽量体现出具体模式。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">OrderFactory、LoginProxy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 建议给临时变量名称添加前缀，以提高辨识度(<code>特殊情况除外，例如for循环里面的i</code>)。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">// t表示temp</span><br><span class="line">t_label</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">label</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="类名风格"><a href="#类名风格" class="headerlink" title="类名风格"></a>类名风格</h4><ul>
+<li><p><strong>[必须]</strong> 一个完整的类名由 <strong>前缀+名称+类型</strong> 3个部分组成。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">MAGLoginViewControler</span><br><span class="line"></span><br><span class="line">前缀：MAG</span><br><span class="line">名称：Login</span><br><span class="line">类型：ViewControler</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="分类命名风格"><a href="#分类命名风格" class="headerlink" title="分类命名风格"></a>分类命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 分类命名风格和类名类似，由 <strong>前缀+名称</strong> 2个部分组成。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">UIView (MAGAdd)</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">UIView (Add)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 分类中的方法名必须要添加前缀，防止覆盖系统或3方库的私有方法，前缀需要保持唯一性(<code>例如mp_</code>)。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">mp_substringFromString</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">substringFromString</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 分类中建议不要声明属性，尽量挪到主类中声明。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Tips: </span><br><span class="line">尽管从技术上来讲可以在分类中声明属性，但是这么做需要格外小心，</span><br><span class="line">因为它很容易出现内存上或其他一些问题，而且出现问题很难排查。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 如果一个类比较复杂，建议使用分类重新组织结构和代码(<code>可以参考系统的UIView</code>)。</p>
+</li>
+</ul>
+<h4 id="枚举命名风格"><a href="#枚举命名风格" class="headerlink" title="枚举命名风格"></a>枚举命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 枚举名称的前缀应该和 <strong>typedef</strong> 的名称保持一致。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">typedef NS_ENUM(NSInteger, MGradientChangeDirection) &#123;</span><br><span class="line">    MGradientChangeDirectionLevel,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">typedef NS_ENUM(NSInteger, MGradientChangeDirection) &#123;</span><br><span class="line">    level,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="方法命名风格"><a href="#方法命名风格" class="headerlink" title="方法命名风格"></a>方法命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 方法名称的开头一般以小写字母开始，特殊单词除外(<code>例如HTTP、URL</code>)。</p>
+</li>
+<li><p><strong>[必须]</strong> 方法名称禁止直接使用_作为开始部分。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Tips: </span><br><span class="line">由于系统的私有方法通常以_作为开始部分，这么做可以避免不小心覆盖系统私有方法。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 私有方法必须添加前缀，前缀需要保持唯一性(<code>例如mp_</code>)。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Tips: </span><br><span class="line">给私有方法添加前缀有如下好处：</span><br><span class="line">1. 提高辨识度，提高代码可读性。</span><br><span class="line">2. 避免不小心覆盖系统或框架的私有方法。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 如果方法返回某个属性值，那么请直接使用属性名作为方法名。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">- (CGSize)cellSize;</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">- (CGSize)getCellSize;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 方法的每个参数前必须添加有效关键字。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">- (void)sendAction:(SEL)aSelector </span><br><span class="line">          toObject:(id)anObject </span><br><span class="line">       forAllCells:(BOOL)flag;</span><br><span class="line">       </span><br><span class="line">反例：</span><br><span class="line">- (void)sendAction:(SEL)aSelector </span><br><span class="line">                  :(id)anObject </span><br><span class="line">                  :(BOOL)flag;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 如果某个方法是由通知触发的，那么请使用 <code>Notification</code> 关键字作为名称后缀。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">appDidBecomeActiveNotification</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">appDidBecomeActive</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 尽量不要使用“and”连接接收者属性，尽管and读起来还算顺口，但随着你创建的方法参数的增加，这将会带来一系列的问题。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">- (int)runModalForDirectory:(NSString *)path </span><br><span class="line">                       file:(NSString *)name </span><br><span class="line">                      types:(NSArray *)fileTypes;</span><br><span class="line">                      </span><br><span class="line">反例：</span><br><span class="line">- (int)runModalForDirectory:(NSString *)path </span><br><span class="line">                    andFile:(NSString *)name </span><br><span class="line">                   andTypes:(NSArray *)fileTypes;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 如果方法描述了两个独立的动作，则可以使用 <code>and</code> 连接。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">- (BOOL)openFile:(NSString *)fullPath </span><br><span class="line"> withApplication:(NSString *)appName </span><br><span class="line">   andDeactivate:(BOOL)flag;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 尽量不要使用 <code>get</code> 作为方法名称的开始部分，除非这个方法间接返回对象或值。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">- (UIColor *)backgroundColor;</span><br><span class="line">- (void)getLineDash:(float *)pattern count:(int *)count phase:(float *)phase;</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">- (UIColor *)getBackgroundColor;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="协议命名风格"><a href="#协议命名风格" class="headerlink" title="协议命名风格"></a>协议命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 协议中的方法名以触发消息的对象名开头，省略类名前缀并首字母小写，如果它没有关联任何类则可以忽略这个规则。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">- (BOOL)tableView:(NSTableView *)tableView </span><br><span class="line">  shouldSelectRow:(int)row;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 除非协议方法只有一个参数，否则冒号需紧跟在类名后面。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">1. - (BOOL)tableView:(NSTableView *)tableView </span><br><span class="line">     shouldSelectRow:(int)row;</span><br><span class="line">  </span><br><span class="line">2. - (BOOL)applicationOpenUntitledFile:(NSApplication *)sender;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="通知命名风格"><a href="#通知命名风格" class="headerlink" title="通知命名风格"></a>通知命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 一个完整的通知名称由 <strong>关联的类名&#x2F;通用前缀+名称+Notification</strong> 3个部分组成。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">UIApplicationDidBecomeActiveNotification</span><br><span class="line"></span><br><span class="line">关联的类：UIApplication</span><br><span class="line">通知名称：DidBecomeActive</span><br><span class="line">固定后缀：Notification</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="常量命名风格"><a href="#常量命名风格" class="headerlink" title="常量命名风格"></a>常量命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 如果常量局限于某个 <strong>编译单元</strong>(<code>通常指某个类的实现文件内</code>) 之内，通常在前面加小写字母k作为前缀，若常量在全局可见，通常以类名作为前缀，然后采用首字母大写驼峰命名方式。</p>
+   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">// 局部可见</span><br><span class="line">const CGFloat kAnimationDuration = 2.0;</span><br><span class="line">// 全局可见</span><br><span class="line">const CGFloat UIActivityIndicatorViewAnimationDuration = 2.0;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> const如果修饰的是基本数据类型，则放在最左侧，如果修饰的是对象，则放在变量名前面。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">const NSInteger age</span><br><span class="line">NSString * const name</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="异常类命名风格"><a href="#异常类命名风格" class="headerlink" title="异常类命名风格"></a>异常类命名风格</h4><ul>
+<li><strong>[必须]</strong> 一个完整的异常类名称由 <strong>前缀+名称+Exception</strong> 3个部分组成。</li>
+</ul>
+<h4 id="文件命名风格"><a href="#文件命名风格" class="headerlink" title="文件命名风格"></a>文件命名风格</h4><ul>
+<li><p><strong>[必须]</strong> 文件名全部小写，使用_连接不同的模块，模块中的单词可以使用驼峰命名。</p>
+</li>
+<li><p><strong>[必须]</strong> 文件名称由 <strong>所属模块+描述</strong> 2个部分组成。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">public_back@2x.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="注释风格"><a href="#注释风格" class="headerlink" title="注释风格"></a>注释风格</h4><ul>
+<li><p><strong>[必须]</strong> 注释请遵守 <a target="_blank" rel="noopener" href="https://www.doxygen.nl/index.html">Doxygen</a> 风格。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">一个好的例子：</span><br><span class="line">/**</span><br><span class="line"> * @brief 关于这个方法的一个简短说明。</span><br><span class="line"> * @discussion 一段详细的描述。</span><br><span class="line"> * @warning 一些警告信息。</span><br><span class="line"> * @note 描述一些需要注意的事情。</span><br><span class="line"> * @param obj1 参数1的说明。</span><br><span class="line"> * @return 返回值的说明。</span><br><span class="line"> * @code</span><br><span class="line"> * 示例代码：</span><br><span class="line"> * id temp = [self testFunction:@&quot;111&quot;];</span><br><span class="line"> * @endcode</span><br><span class="line"> *</span><br><span class="line"> * @par 分割线，上面是一些常用的注释语法，下面是不常用的注释语法。</span><br><span class="line"> *</span><br><span class="line"> * @todo 即将要做的事情。</span><br><span class="line"> * @bug 可能存在的BUG，或者对缺陷的说明。</span><br><span class="line"> * @since 说明从什么版本、什么时间加入此代码。</span><br><span class="line"> * @exception 对可能存在的异常的解释。</span><br><span class="line"> * @pre 用来说明执行方法所需要的前提条件。</span><br><span class="line"> * @post 用来说明执行方法之后的使用条件。</span><br><span class="line"> * @author 作者名称。</span><br><span class="line"> * @remark 一些评论信息。</span><br><span class="line"> * @copyright 版权信息。</span><br><span class="line"> * @version 当前的工程版本。</span><br><span class="line"> * @par 一个新的名称</span><br><span class="line"> *</span><br><span class="line"> * 开始一个新段落。</span><br><span class="line"> */</span><br><span class="line">- (id)testFunction:(NSString *)obj1 &#123;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  效果图<br>  <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f01e7d9511334d728efdf822fe013f79~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+</li>
+<li><p><strong>[必须]</strong> 注释的作用是用于解释那些复杂不容易理解的逻辑，以及需要注意的地方，而不是告诉别人这个方法的作用，作用应该在名称中体现出来，提供一个合理的名称比使用晦涩的名称然后试图通过注释来解释它们要好的多。</p>
+</li>
+<li><p><strong>[必须]</strong> 如果修改了实现细节，请记得修改注释。</p>
+</li>
+<li><p><strong>[必须]</strong> 注释不要写的太冗长或太简短，这样都不利于别人快速理解。</p>
+</li>
+<li><p><strong>[必须]</strong> 注释的双斜线和内容之间有且仅有一个空格。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">// 这是示例注释，请注意在双斜线后有一个空格。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 注释中的语句也需要添加适量的标点符号和空格帮助别人理解。</p>
+</li>
+<li><p><strong>[必须]</strong> 对于代码注释需要谨慎，代码被注释一般有2种可能，1. 后续会恢复此段代码逻辑； 2. 永久不用；对于第1种情况需添加相应注释，如果没有注释信息难以知晓注释动机，后者建议直接删除。如果有需要可以通过代码仓库查阅历史代码。</p>
+</li>
+<li><p><strong>[必须]</strong> 如果某个方法是有问题的，可以使用特殊注释来提醒别人和自己。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">// MARK: - 方法集</span><br><span class="line">// TODO: 等待实现</span><br><span class="line">// FIXME: 有bug，需要修改</span><br><span class="line">// !!!: 逻辑混乱，需要完善</span><br><span class="line">// ???: 具体干什么用的？</span><br><span class="line">- (void)testFunction;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 行尾注解和代码保持2个空格，如果后续行有多个注释，将它们排列起来通常会更具可读性。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例:</span><br><span class="line">[self doSomethingWithALongName];  // Two spaces before the comment.</span><br><span class="line">[self doSomethingShort];          // More spacing to align the comment.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 别给糟糕的代码加注释，重构它。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Tips: </span><br><span class="line">注释不能美化糟糕的代码。当企图使用注释前，先考虑是否可以通过调整结构，命名等操作，消除写注释的必要。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 如果一个类比较复杂或者有需要注意的地方，那么请在声明它的地方加上注释帮助别人快速理解，如果有必要可以使用 <a target="_blank" rel="noopener" href="https://wwi.lanzout.com/iyHlYz0lxqf"><strong>Monodraw</strong></a> 工具绘制ASCII图形提高可读性，如下图所示。</p>
+<p>  monodraw示例图(这张图很清楚的向别人表达这个类的作用)<br>  <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/63b45029f3684dfba4de6f7b4a6e8a8a~tplv-k3u1fbpfcp-zoom-1.image" alt="monodraw示例图"></p>
+</li>
+</ul>
+<h2 id="编码风格"><a href="#编码风格" class="headerlink" title="编码风格"></a>编码风格</h2><ul>
+<li><p><strong>[必须]</strong> 不要增加多余空格来使上下代码的等号对齐。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">int a1 = 1;</span><br><span class="line">long a2 = 3;</span><br><span class="line">NSString *a3 = @&quot;&quot;;</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">int a1       = 1;</span><br><span class="line">long a2      = 3;</span><br><span class="line">NSString *a3 = @&quot;&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 逗号(,)后面、二元运算符的左右应该添加1个空格，小括号左右不要有空格。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">kColorRGB(255, 255, 255);</span><br><span class="line">int a = 3 + 4;</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">kColorRGB(255,255,255)</span><br><span class="line">int a = 3+4;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 尽量使用 if return 代替 if else，if 嵌套最好不超过5层。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">if (x == 1) &#123;</span><br><span class="line">……</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (x == 2) &#123;</span><br><span class="line">……</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">反例：</span><br><span class="line">if (x == 1) &#123;</span><br><span class="line">……</span><br><span class="line">&#125; else if (x == 2) &#123;</span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 尽量避免采用取反逻辑运算符，因为取反逻辑不利于快速理解。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">if (array == nil) &#123;</span><br><span class="line">……</span><br><span class="line">&#125;</span><br><span class="line">反例：</span><br><span class="line">if (!array) &#123;</span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="结构风格"><a href="#结构风格" class="headerlink" title="结构风格"></a>结构风格</h2><ul>
+<li><p><strong>[必须]</strong> 文件内部使用的常量、静态变量在@interface之前声明，如果没有@interface就在@implementation前声明。</p>
+</li>
+<li><p><strong>[必须]</strong> 同一类型的属性声明放在一块显示，中间用一行空格区分，不同类型的声明用2行空格隔开，属性声明的开始和末尾都要添加一行空格。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例：</span><br><span class="line">@interface MineViewController ()</span><br><span class="line"></span><br><span class="line">@property (nonatomic, weak) UIView *headView;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, weak) UITableView *tableView;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSArray *dataSourceArray;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 不同作用的方法按照顺序进行排序，生命周期相关的方法 &gt; 公开方法 &gt; 私有方法 &gt; 继承方法 &gt; 通知方法 &gt; 协议方法 &gt; getter&#x2F;setter方法，简单的说就是越重要越常用的方法越靠前。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#pragma mark - LifeCycle(生命周期相关的代码放在最上面)</span><br><span class="line">- (void)dealloc &#123;&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewWillAppear:(BOOL)animated &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - Public(公开方法)</span><br><span class="line">// code...</span><br><span class="line">// 下空两行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - Private(私有方法)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - Override(需要覆盖父类的方法)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - Notification(通知方法)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - Delegate(Delegate需要实现的方法)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma mark - Getter/Setter</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[必须]</strong> 方法的声明顺序应该为类方法 &gt; 初始化方法 &gt; 实例方法。</p>
+</li>
+<li><p><strong>[建议]</strong> 不同逻辑、不同语义、不同业务的代码之间插入一个空行分隔开以提升可读性。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例:</span><br><span class="line">[self createSubviews];</span><br><span class="line">[self createTableview];</span><br><span class="line"></span><br><span class="line">[self netRequest];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>[建议]</strong> 头文件包含顺序应该是系统头文件 &gt; SDK头文件 &gt; 其他依赖的头文件，用一个空行分隔逻辑上不同的头文件，在每个组中，包含的内容建议按首字母顺序排列。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正例:</span><br><span class="line">#import &quot;ProjectX/BazViewController.h&quot;</span><br><span class="line"></span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;base/basictypes.h&quot;</span><br><span class="line">#include &quot;base/integral_types.h&quot;</span><br><span class="line">#include &quot;util/math/mathutil.h&quot;</span><br><span class="line"></span><br><span class="line">#import &quot;ProjectX/BazModel.h&quot;</span><br><span class="line">#import &quot;Shared/Util/Foo.h&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="一个好的头文件例子："><a href="#一个好的头文件例子：" class="headerlink" title="一个好的头文件例子："></a>一个好的头文件例子：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">#import &quot;WXYZ_ADDefine.h&quot;</span><br><span class="line">    </span><br><span class="line">@class WXYZ_ADModel;</span><br><span class="line">    </span><br><span class="line">NS_ASSUME_NONNULL_BEGIN</span><br><span class="line">    </span><br><span class="line">/// 提供给外部使用的广告实例对象，所有需要使用广告的地方都应该使用 WXYZ_ADView 创建。</span><br><span class="line">@interface WXYZ_ADView : UIView</span><br><span class="line">    </span><br><span class="line">/// 广告相关属性，key表示广告标题，value表示广告宽度。</span><br><span class="line">@property(nonatomic, copy) NSDictionary&lt;NSString *, NSNumber *&gt; *attributes;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">/// 根据广告类型和广告位置返回是否一个布尔值，表示是否需要展示广告。</span><br><span class="line">+ (BOOL)canLoadADWithADType:(WXYZ_ADViewType)adType adPosition:(WXYZ_ADViewPosition)adPosition;</span><br><span class="line">    </span><br><span class="line">/// 根据广告类型和广告位置创建并返回一个adView对象。</span><br><span class="line">/// @discussion 如果广告开关是关闭状态则返回nil。</span><br><span class="line">/// @param adType 广告类型</span><br><span class="line">/// @param adPosition 广告位置</span><br><span class="line">+ (nullable instancetype)createADViewWithType:(WXYZ_ADViewType)adType adPosition:(WXYZ_ADViewPosition)adPosition;</span><br><span class="line">    </span><br><span class="line">/// 设置adModel将会更新正在显示的广告内容。</span><br><span class="line">- (void)setAdModel:(WXYZ_ADModel *)adModel;</span><br><span class="line">    </span><br><span class="line">+ (instancetype)allocWithZone:(struct _NSZone *)zone UNAVAILABLE_ATTRIBUTE;</span><br><span class="line">    </span><br><span class="line">+ (instancetype)new UNAVAILABLE_ATTRIBUTE;</span><br><span class="line">    </span><br><span class="line">+ (instancetype)alloc UNAVAILABLE_ATTRIBUTE;</span><br><span class="line">    </span><br><span class="line">- (instancetype)initWithFrame:(CGRect)frame UNAVAILABLE_ATTRIBUTE;</span><br><span class="line">    </span><br><span class="line">- (instancetype)init UNAVAILABLE_ATTRIBUTE;</span><br><span class="line">    </span><br><span class="line">@end</span><br><span class="line">    </span><br><span class="line">NS_ASSUME_NONNULL_END</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>使用 <strong>@class</strong> 向前声明 <code>WXYZ_ADModel</code>而不是用 <code>#import</code>包含。</li>
+<li>@interface 之前有关于类的说明注释，帮助别人在使用这个类时快速了解这个类的作用以及需要注意的地方。</li>
+<li>字典使用了泛型声明字典包含的类型，并且在注释中详细的说明了字典包含的内容。</li>
+<li>属性和第一个方法之间有2个空格来区分它们没有关联性。</li>
+<li>每个属性和返回值都有是否为空的状态，例如 <code>+ createADViewWithType</code> 方法使用 <code>nullable</code> 表明了返回值可能为空的状态，并且在注释中说明了什么情况下会返回空对象。</li>
+<li>遵守了类方法 &gt; 初始化方法 &gt; 实例方法的规则。</li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><ol>
+<li>可以转载，但是请注明来源。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html">Cocoa编码规范</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/alibaba/Alibaba-Java-Coding-Guidelines">阿里巴巴Java代码规范</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/25829244/">Effective Objective-C 2.0  编写高质量iOS与OS X代码的52个有效方法</a></li>
+<li><a target="_blank" rel="noopener" href="https://google.github.io/styleguide/objcguide.html">Google的Objective-C风格指南</a></li>
+<li>网上发布的有关代码规范的文章</li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">布多</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://internetwei.github.io/2021/08/07/代码人生/Objc风格指南/">https://internetwei.github.io/2021/08/07/代码人生/Objc风格指南/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://internetwei.github.io">布多的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a><a class="post-meta__tags" href="/tags/Objc/">Objc</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/08/11/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/"><i class="fa fa-chevron-left">  </i><span>Git命令手册</span></a></div><div class="next-post pull-right"><a href="/2021/03/08/%E4%BB%A3%E7%A0%81%E4%BA%BA%E7%94%9F/Markdown%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/"><span>Markdown语法手册</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="lv-container" data-id="city" data-uid="MTAyMC81MzU5Ny8zMDA3MA=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div><footer class="footer-bg" style="background-image: url(images/blog_top_image.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2023 By 布多</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

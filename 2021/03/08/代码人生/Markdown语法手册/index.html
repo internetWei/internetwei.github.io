@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Markdown语法手册"><meta name="keywords" content="Markdown"><meta name="author" content="布多"><meta name="copyright" content="布多"><title>Markdown语法手册 | 布多的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f0d94d3f99211c3546490e469f6ecbd8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><meta name="generator" content="Hexo 6.3.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number"></span> <span class="toc-text">基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-number">0.0.1.</span> <span class="toc-text">转义字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E9%A2%98"><span class="toc-number">0.0.2.</span> <span class="toc-text">标题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number"></span> <span class="toc-text">一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.1.</span> <span class="toc-text">四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">五级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">六级标题</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95%E7%9A%84%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number"></span> <span class="toc-text">另一种写法的一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95%E7%9A%84%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">另一种写法的二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E6%AE%B5%E8%90%BD"><span class="toc-number">1.0.1.</span> <span class="toc-text">多行段落</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">1.0.2.</span> <span class="toc-text">单行注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">1.0.3.</span> <span class="toc-text">多行注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC"><span class="toc-number">1.0.4.</span> <span class="toc-text">空格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E7%B2%97"><span class="toc-number">1.0.5.</span> <span class="toc-text">加粗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%80%BE%E6%96%9C"><span class="toc-number">1.0.6.</span> <span class="toc-text">倾斜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E7%B2%97%E5%80%BE%E6%96%9C"><span class="toc-number">1.0.7.</span> <span class="toc-text">加粗倾斜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%97%E5%BC%95%E7%94%A8"><span class="toc-number">1.0.8.</span> <span class="toc-text">块引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#markdown%E8%AF%AD%E6%B3%95"><span class="toc-number">1.0.9.</span> <span class="toc-text">markdown语法!</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">1.0.10.</span> <span class="toc-text">有序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">1.0.11.</span> <span class="toc-text">无序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.0.12.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">1.0.13.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%89%B2%E7%BA%BF"><span class="toc-number">1.0.14.</span> <span class="toc-text">分割线</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E5%88%86%E5%89%B2%E7%BA%BF1-%E4%B8%8B%E9%9D%A2%E6%98%AF%E5%88%86%E5%89%B2%E7%BA%BF2"><span class="toc-number">2.</span> <span class="toc-text">下面是分割线1***下面是分割线2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E5%88%86%E5%89%B2%E7%BA%BF3"><span class="toc-number">3.</span> <span class="toc-text">下面是分割线3_________________</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%AE%E7%AE%B1%E5%92%8CURL"><span class="toc-number">3.0.1.</span> <span class="toc-text">邮箱和URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">3.0.2.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">3.0.3.</span> <span class="toc-text">图片</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95"><span class="toc-number"></span> <span class="toc-text">扩展语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">0.0.1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="toc-number">0.0.2.</span> <span class="toc-text">代码高亮</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E9%A2%98ID"><span class="toc-number">0.0.3.</span> <span class="toc-text">标题ID</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%87%E9%A2%981"><span class="toc-number">0.0.3.1.</span> <span class="toc-text">标题1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%87%E9%A2%982"><span class="toc-number">0.0.3.2.</span> <span class="toc-text">标题2</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%9A%E6%B3%A8"><span class="toc-number">0.0.4.</span> <span class="toc-text">脚注</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="toc-number">0.0.5.</span> <span class="toc-text">任务列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%BA%BF"><span class="toc-number">0.0.6.</span> <span class="toc-text">删除线</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E5%90%88HTML"><span class="toc-number"></span> <span class="toc-text">配合HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E4%BD%93"><span class="toc-number">0.0.1.</span> <span class="toc-text">字体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2"><span class="toc-number">0.0.2.</span> <span class="toc-text">颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E6%A0%87"><span class="toc-number">0.0.3.</span> <span class="toc-text">上标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E6%A0%87"><span class="toc-number">0.0.4.</span> <span class="toc-text">下标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">0.0.5.</span> <span class="toc-text">特殊字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2"><span class="toc-number">0.0.6.</span> <span class="toc-text">背景颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="toc-number">0.0.7.</span> <span class="toc-text">对齐方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%B1%85%E4%B8%AD%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B0%BA%E5%AF%B8"><span class="toc-number">0.0.8.</span> <span class="toc-text">图片居中并自定义尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E9%9F%B3%E4%B9%90"><span class="toc-number">0.0.9.</span> <span class="toc-text">插入音乐</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E8%A7%86%E9%A2%91"><span class="toc-number">0.0.10.</span> <span class="toc-text">插入视频</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="images/universal_avatar.png"></div><div class="author-info__name text-center">布多</div><div class="author-info__description text-center">前进 前进 不择手段的前进</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">12</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">7</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(images/blog_top_image.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">布多的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/about">关于</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">Markdown语法手册</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-03-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E4%BB%A3%E7%A0%81%E4%BA%BA%E7%94%9F/">代码人生</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">1.7k</span><span class="post-meta__separator">|</span><span>阅读时长: 6 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于 <code>Markdown</code> 的文章，已经有很多文章了，这篇文章的目的并不是教大家如何入门；它更像一本语法手册，供你随时翻阅。</p>
+<p>Markdown虽然不难，但是有很多语法由于不常用，所以用的时候难免会忘记怎么写，建议把这篇文章读一遍，然后收藏起来(最好下载到本地)，需要用到的时候再打开看一下。</p>
+<p>Markdown有很多高级语法很多平台并不支持，如果遇到平台不支持文章中的某些语法属于正常情况。</p>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><h4 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我不是\*倾斜文字\*</span><br></pre></td></tr></table></figure>
+<p>我不是*倾斜文字*</p>
+<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br><span class="line"></span><br><span class="line">另一种写法的一级标题</span><br><span class="line">===============</span><br><span class="line">另一种写法的二级标题</span><br><span class="line">---------------</span><br></pre></td></tr></table></figure>
+
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h1 id="另一种写法的一级标题"><a href="#另一种写法的一级标题" class="headerlink" title="另一种写法的一级标题"></a>另一种写法的一级标题</h1><h2 id="另一种写法的二级标题"><a href="#另一种写法的二级标题" class="headerlink" title="另一种写法的二级标题"></a>另一种写法的二级标题</h2><h4 id="多行段落"><a href="#多行段落" class="headerlink" title="多行段落"></a>多行段落</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第一行</span><br><span class="line"></span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">第二行</span><br></pre></td></tr></table></figure>
+
+<p>第一行</p>
+<br>
+<br>
+第二行
+
+<h4 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[//]: 这是一行注释信息</span><br></pre></td></tr></table></figure>
+<h4 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div style=&#x27;display: none&#x27;&gt;</span><br><span class="line">    我是第一行注释，</span><br><span class="line">    我是第二行注释，</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--</span><br><span class="line">我是第一行注释，</span><br><span class="line">我是第二行注释。</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<div style='display: none'>
+    我是第一行注释，
+    我是第二行注释，
+</div>
+
+<!--
+我是第一行注释，
+我是第二行注释。
+-->
+
+<h4 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第一个文字 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;第二个文字</span><br></pre></td></tr></table></figure>
+<p>第一个文字 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个文字</p>
+<h4 id="加粗"><a href="#加粗" class="headerlink" title="加粗"></a>加粗</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我是 __加粗文字__</span><br><span class="line">我是**加粗文字**</span><br></pre></td></tr></table></figure>
+<p>我是 <strong>加粗文字</strong><br>我是<strong>加粗文字</strong></p>
+<h4 id="倾斜"><a href="#倾斜" class="headerlink" title="倾斜"></a>倾斜</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我是 _倾斜文字_</span><br><span class="line">我是*倾斜文字*</span><br></pre></td></tr></table></figure>
+<p>我是 <em>倾斜文字</em><br>我是<em>倾斜文字</em></p>
+<h4 id="加粗倾斜"><a href="#加粗倾斜" class="headerlink" title="加粗倾斜"></a>加粗倾斜</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我是 ___加粗倾斜文字___</span><br><span class="line">我是***加粗倾斜文字***</span><br><span class="line">我是 __*加粗倾斜文字*__</span><br></pre></td></tr></table></figure>
+<p>我是 <em><strong>加粗倾斜文字</strong></em><br>我是<em><strong>加粗倾斜文字</strong></em><br>我是 <strong><em>加粗倾斜文字</em></strong></p>
+<h4 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; #### markdown语法!</span><br><span class="line">&gt;</span><br><span class="line">&gt; - 第一点好处.</span><br><span class="line">&gt; - 第二点好处.</span><br><span class="line">&gt;</span><br><span class="line">&gt; *任何* 一篇文档都是 **非常不错的**.</span><br><span class="line">&gt; &gt; 我是嵌套文案</span><br><span class="line">&gt; &gt; &gt; 我是嵌套再嵌套的文案</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法!"></a>markdown语法!</h4><ul>
+<li>第一点好处.</li>
+<li>第二点好处.</li>
+</ul>
+<p><em>任何</em> 一篇文档都是 <strong>非常不错的</strong>.</p>
+<blockquote>
+<p>我是嵌套文案</p>
+<blockquote>
+<p>我是嵌套再嵌套的文案</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 第1方案</span><br><span class="line">2. 第2方案</span><br><span class="line">    1. 第2.1方案</span><br><span class="line">    2. 第2.2方案</span><br><span class="line">3. 第3方案</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第1方案</li>
+<li>第2方案<ol>
+<li>第2.1方案</li>
+<li>第2.2方案</li>
+</ol>
+</li>
+<li>第3方案</li>
+</ol>
+<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">* 无序列表1</span><br><span class="line">+ 无序列表2</span><br><span class="line">- 无序列表3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无序列表1</li>
+</ul>
+<ul>
+<li>无序列表2</li>
+</ul>
+<ul>
+<li>无序列表3</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`printf(&quot;hello world&quot;);`</span><br></pre></td></tr></table></figure>
+<p><code>printf(&quot;hello world&quot;);</code></p>
+<h4 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    #include&lt;stdio.h&gt;</span><br><span class="line">    int main()</span><br><span class="line">    &#123;</span><br><span class="line">	   printf(&quot;hello world&quot;);</span><br><span class="line">	   return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<pre><code>#include&lt;stdio.h&gt;
+int main()
+&#123;
+   printf(&quot;hello world&quot;);
+   return 0;
+&#125;
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">下面是分割线1</span><br><span class="line">***</span><br><span class="line">下面是分割线2</span><br><span class="line">---</span><br><span class="line">下面是分割线3</span><br><span class="line">_________________</span><br><span class="line">-----------------</span><br></pre></td></tr></table></figure>
+<h2 id="下面是分割线1-下面是分割线2"><a href="#下面是分割线1-下面是分割线2" class="headerlink" title="下面是分割线1***下面是分割线2"></a>下面是分割线1<br>***<br>下面是分割线2</h2><h2 id="下面是分割线3"><a href="#下面是分割线3" class="headerlink" title="下面是分割线3_________________"></a>下面是分割线3<br>_________________</h2><h4 id="邮箱和URL"><a href="#邮箱和URL" class="headerlink" title="邮箱和URL"></a>邮箱和URL</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这是我的邮箱&lt;internetwei@foxmail.com&gt;</span><br><span class="line">这是百度官网&lt;https://www.baidu.com&gt;</span><br></pre></td></tr></table></figure>
+<p>这是我的邮箱<a href="mailto:&#105;&#x6e;&#x74;&#x65;&#114;&#x6e;&#101;&#x74;&#x77;&#x65;&#x69;&#x40;&#x66;&#111;&#x78;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#105;&#x6e;&#x74;&#x65;&#114;&#x6e;&#101;&#x74;&#x77;&#x65;&#x69;&#x40;&#x66;&#111;&#x78;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a><br>这是百度官网<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a></p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[百度官网](https://www.baidu.com)</span><br><span class="line">[百度官网](https://www.baidu.com, &#x27;当鼠标悬停在文字上方时，你会看到它&#x27;)</span><br><span class="line">这是一个**[高亮链接](https://www.baidu.com)**</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.baidu.com/">百度官网</a><br><a target="_blank" rel="noopener" href="https://www.baidu.com,/" title="当鼠标悬停在文字上方时，你会看到它">百度官网</a><br>这是一个**<a target="_blank" rel="noopener" href="https://www.baidu.com/">高亮链接</a>**</p>
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![阿西河图片](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8e19a99d16b3472389a12a93b7f5a14c~tplv-k3u1fbpfcp-zoom-1.image &quot;当鼠标悬停在文字上方时，你会看到它&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/14b99e52bc0a4da491cbe4ca8e5fed0d~tplv-k3u1fbpfcp-zoom-1.image" alt="阿西河图片" title="当鼠标悬停在文字上方时，你会看到它"></p>
+<h1 id="扩展语法"><a href="#扩展语法" class="headerlink" title="扩展语法"></a>扩展语法</h1><h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">左对齐 | 中间对齐 | 右对齐</span><br><span class="line">:--- | :---: | ---:</span><br><span class="line">markdown | 非常 &amp;#124; 棒 | 右对齐</span><br><span class="line">markdown | 专业 &amp;#124; 的 | 右对齐</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="left">左对齐</th>
+<th align="center">中间对齐</th>
+<th align="right">右对齐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">markdown</td>
+<td align="center">非常 &#124; 棒</td>
+<td align="right">右对齐</td>
+</tr>
+<tr>
+<td align="left">markdown</td>
+<td align="center">专业 &#124; 的</td>
+<td align="right">右对齐</td>
+</tr>
+</tbody></table>
+<h4 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">``` Javascript</span><br><span class="line">if (true)&#123; </span><br><span class="line">    return true;</span><br><span class="line">&#125; </span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>)&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3fca6c00b2dc453080f088becdbe8f03~tplv-k3u1fbpfcp-zoom-1.image" alt="代码高亮关键字"></p>
+<h4 id="标题ID"><a href="#标题ID" class="headerlink" title="标题ID"></a>标题ID</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">* [目录1](#标题1)</span><br><span class="line">* [目录2](#标题2)</span><br><span class="line"></span><br><span class="line">##### 标题1</span><br><span class="line">文字内容</span><br><span class="line">##### 标题2</span><br><span class="line">文字内容</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="#%E6%A0%87%E9%A2%981">目录1</a></li>
+<li><a href="#%E6%A0%87%E9%A2%982">目录2</a></li>
+</ul>
+<h5 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h5><p>文字内容</p>
+<h5 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h5><p>文字内容</p>
+<h4 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">脚注1 [^1 ]</span><br><span class="line">脚注2 [^2 ]</span><br><span class="line"></span><br><span class="line">[^1 ]: 脚注1内容</span><br><span class="line">[^2 ]: 脚注2内容</span><br></pre></td></tr></table></figure>
+<p>脚注1 <a href="%E8%84%9A%E6%B3%A81%E5%86%85%E5%AE%B9">^1 </a><br>脚注2 <a href="%E8%84%9A%E6%B3%A82%E5%86%85%E5%AE%B9">^2 </a></p>
+<h4 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- [x] 这是完成的任务</span><br><span class="line">- [ ] 这是没有完成的任务</span><br></pre></td></tr></table></figure>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 这是完成的任务</li>
+<li><input disabled="" type="checkbox"> 这是没有完成的任务</li>
+</ul>
+<h4 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这是 ~~删除线~~</span><br></pre></td></tr></table></figure>
+<p>这是 <del>删除线</del></p>
+<h1 id="配合HTML"><a href="#配合HTML" class="headerlink" title="配合HTML"></a>配合HTML</h1><h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;font face=&quot;黑体&quot; size=5&gt;我是黑体字&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;微软雅黑&quot; size=5&gt;我是微软雅黑&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;STCAIYUN&quot; size=5&gt;我是华文彩云&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<p><font face="黑体" size=5>我是黑体字</font><br><font face="微软雅黑" size=5>我是微软雅黑</font><br><font face="STCAIYUN" size=5>我是华文彩云</font></p>
+<h4 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;font color=#0099ff size=5&gt;color=#0099ff&lt;/font&gt;</span><br><span class="line">&lt;font color=#00ffff size=5&gt;color=#00ffff&lt;/font&gt;</span><br><span class="line">&lt;font color=gray size=5&gt;color=gray&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<p><font color=#0099ff size=5>color&#x3D;#0099ff</font><br><font color=#00ffff size=5>color&#x3D;#00ffff</font><br><font color=gray size=5>color&#x3D;gray</font></p>
+<h4 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n&lt;sup&gt;2&lt;/sup&gt;=n+1</span><br></pre></td></tr></table></figure>
+<p>n<sup>2</sup>&#x3D;n+1</p>
+<h4 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">H&lt;sub&gt;2&lt;/sub&gt;O</span><br></pre></td></tr></table></figure>
+<p>H<sub>2</sub>O</p>
+<h4 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h4><p>由于图片太长，这里就不显示了，感兴趣的朋友可以<a target="_blank" rel="noopener" href="https://gitee.com/internetWei/images/raw/master/uPic/202103090020.png">点击链接查看</a></p>
+<h4 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;p style=&quot;background-color: #b6ffc8;&quot;&gt;绿色&lt;/p&gt;</span><br><span class="line">&lt;p style=&quot;center;background-color: #ffb6d2;&quot;&gt;红色&lt;/p&gt;</span><br><span class="line">&lt;p style=&quot;right;background-color: #b6d7ff;&quot;&gt;蓝色&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p style="background-color: #b6ffc8;">绿色</p>
+<p style="center;background-color: #ffb6d2;">红色</p>
+<p style="right;background-color: #b6d7ff;">蓝色</p>
+
+<h4 id="对齐方式"><a href="#对齐方式" class="headerlink" title="对齐方式"></a>对齐方式</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;p style=&quot;text-align: left;background-color: #b6ffc8;&quot;&gt;左对齐&lt;/p&gt;</span><br><span class="line">&lt;p style=&quot;text-align: center;background-color: #ffb6d2;&quot;&gt;中间居中&lt;/p&gt;</span><br><span class="line">&lt;p style=&quot;text-align: right;background-color: #b6d7ff;&quot;&gt;右对齐&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p style="text-align: left;background-color: #b6ffc8;">左对齐</p>
+<p style="text-align: center;background-color: #ffb6d2;">中间居中</p>
+<p style="text-align: right;background-color: #b6d7ff;">右对齐</p>
+
+<h4 id="图片居中并自定义尺寸"><a href="#图片居中并自定义尺寸" class="headerlink" title="图片居中并自定义尺寸"></a>图片居中并自定义尺寸</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div style=&quot;text-align: center;background-color: #b6ffc8;&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;https://p.upyun.com/docs/cloud/demo.jpg&quot; </span><br><span class="line">        alt=&quot;阿西河图片&quot; </span><br><span class="line">        title=&quot;阿西河图片Title&quot; </span><br><span class="line">        style=&quot;width:300px;height:300px;&quot;</span><br><span class="line">        &gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<div style="text-align: center;background-color: #b6ffc8;">
+    <img src="https://p.upyun.com/docs/cloud/demo.jpg" 
+        alt="阿西河图片" 
+        title="阿西河图片Title" 
+        style="width:300px;height:300px;"
+        >
+</div>
+
+
+<h4 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe </span><br><span class="line">    frameborder=&quot;no&quot; </span><br><span class="line">    border=&quot;0&quot; </span><br><span class="line">    marginwidth=&quot;0&quot; </span><br><span class="line">    marginheight=&quot;0&quot; </span><br><span class="line">    width=100% </span><br><span class="line">    height=auto </span><br><span class="line">    src=&quot;//music.163.com/outchain/player?type=2&amp;id=528478901&amp;auto=1&amp;height=66&quot;&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<iframe 
+    frameborder="no" 
+    border="0" 
+    marginwidth="0" 
+    marginheight="0" 
+    width=100% 
+    height=auto 
+    src="//music.163.com/outchain/player?type=2&id=528478901&auto=1&height=66">
+</iframe>
+
+<h4 id="插入视频"><a href="#插入视频" class="headerlink" title="插入视频"></a>插入视频</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;iframe </span><br><span class="line">    src=&quot;//player.bilibili.com/player.html?aid=10631344&amp;cid=17548810&amp;page=1&quot; </span><br><span class="line">    scrolling=&quot;no&quot; </span><br><span class="line">    style=&quot;border:0;width:100%;height:auto;min-height:790px;&quot;</span><br><span class="line">    allowfullscreen=&quot;true&quot;&gt; </span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<iframe 
+    src="//player.bilibili.com/player.html?aid=10631344&cid=17548810&page=1" 
+    scrolling="no" 
+    style="border:0;width:100%;height:auto;min-height:790px;"
+    allowfullscreen="true"> 
+</iframe></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">布多</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://internetwei.github.io/2021/03/08/代码人生/Markdown语法手册/">https://internetwei.github.io/2021/03/08/代码人生/Markdown语法手册/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://internetwei.github.io">布多的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Markdown/">Markdown</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/08/07/%E4%BB%A3%E7%A0%81%E4%BA%BA%E7%94%9F/Objc%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97/"><i class="fa fa-chevron-left">  </i><span>Objc风格指南</span></a></div><div class="next-post pull-right"><a href="/2021/03/07/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/LLDynamicLaunchScreen%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/"><span>LLDynamicLaunchScreen的设计思路</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="lv-container" data-id="city" data-uid="MTAyMC81MzU5Ny8zMDA3MA=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div><footer class="footer-bg" style="background-image: url(images/blog_top_image.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2023 By 布多</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
