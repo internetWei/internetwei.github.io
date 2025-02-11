@@ -492,11 +492,11 @@ footer.is-mobile {
 }
 #footer {
   padding: 2rem 1rem;
-  color: #eee;
+  color: #000;
   text-align: center;
 }
 #footer a {
-  color: #eee;
+  color: #000;
   text-decoration: none;
   cursor: pointer;
 }

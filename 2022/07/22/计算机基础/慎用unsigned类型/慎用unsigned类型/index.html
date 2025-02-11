@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="慎用unsigned类型"><meta name="keywords" content="C"><meta name="author" content="布多"><meta name="copyright" content="布多"><title>慎用unsigned类型 | 布多的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f0d94d3f99211c3546490e469f6ecbd8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="布多的博客" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">1.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E5%A4%96%E8%AF%9D-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%A1%A5%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">题外话(为什么要使用补码)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">4.</span> <span class="toc-text">注意事项</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="images/avatar.jpg"></div><div class="author-info__name text-center">布多</div><div class="author-info__description text-center">前进！前进！！不择手段地前进！！！</div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/internetwei">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">9</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">9</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友链</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.coderqi.com/">齐小胖之家</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(images/backgroundImage.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">布多的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">慎用unsigned类型</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-07-22</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">2.4k</span><span class="post-meta__separator">|</span><span>阅读时长: 8 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>由 布多(budo) 发布于 2022-07-22</p>
+</blockquote>
+<p>这篇文章我会从计算机基础的角度向大家解释 unsigned 类型 和 signed 类型在内存中到底是如何存储的，以及为什么要慎用 unsigned 类型。</p>
+<blockquote>
+<p>我是站在 iOS 开发角度写的这篇文章，所以会出现一些OC代码，如果你看不懂的话可以跳过这些部分。</p>
+</blockquote>
+<p>在OC中我们一般会使用 <strong>NSUInteger</strong> 而非 <strong>unsigned</strong> 表示无符号整数，但其实它们是一样的，NSUInteger 只是 unsigned 的类型别名而已；NSObjCRuntime.h 文件中有关于 NSUInteger 的详细定义。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> __LP64__ || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="built_in">NSUInteger</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">int</span> <span class="built_in">NSUInteger</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="type">void</span>)reversePrintObjectWithArray:(<span class="built_in">NSArray</span> *)array &#123;</span><br><span class="line">    <span class="keyword">if</span> (![array isKindOfClass:<span class="built_in">NSArray</span>.class]) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = array.count - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;第%lu个元素: %@&quot;</span>, i, array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面这个方法只是简单的倒序打印数组中的每个元素，而且在打印前也做了类型检查和判空操作。但是它还是有问题，你能看出来吗？</p>
+<p>当你传递的参数是 nil、非 NSArray 类型，或者非空数组时，一切都正常；但如果你不小心传递了一个空数组，将会导致崩溃，崩溃原因是数组访问越界，越界的索引是 18446744073709551615(<code>如果在32位环境下，会是4294967295</code>)。你也可以把这段代码粘贴到你的项目中，测试一下看看结果是否和我说的一样。</p>
+<p>？？？是不是觉得条件都不符合，循环应该一次都没执行，还有 18446744073709551615 是哪来的？</p>
+<p>其实造成这一切的根源在于 __计算机对于正数和负数的读写方式不一样__。</p>
+<hr>
+<p>下面我将用C代码来帮助大家理解 _计算机是如何读写正数和负数_。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">short</span> a = <span class="number">-18</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> b = <span class="number">65518</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;a: %hd, %hu\n&quot;</span>, a, a);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;b: %hd, %hu\n&quot;</span>, b, b);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/internetWei/files/master/Images/2022_07_20_16.37.50.png" alt="运行结果"></p>
+<p>计算机规定整数必须以补码形式进行存储，如果你想弄明白为什么，请阅读<a href="#jump1">题外话(为什么要使用补码)</a>。</p>
+<blockquote>
+<p>注意：只有负数需要计算补码，正数的反码、补码其实和原码一样。</p>
+</blockquote>
+<p>变量a的补码计算过程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-18</span><br><span class="line">= 10010(18的二进制)</span><br><span class="line">= 0000 0000 0001 0010(short 类型占用 2 * 8 = 16 个比特位，所以前面需要补0)</span><br><span class="line">= 1000 0000 0001 0010(计算机规定，有符号数的第1个比特位用于存储符号位，1表示负</span><br><span class="line">数，0表示正数；这就是-18的原码)</span><br><span class="line">= 1111 1111 1110 1101(这是-18的反码，反码就是把除符号位之外的所有数据取反)</span><br><span class="line">= 1111 1111 1110 1110(这是-18的补码，补码是在反码的基础上加1)</span><br></pre></td></tr></table></figure>
+
+<p>变量a实际存储在内存中的数据不是原码 <code>1000 0000 0001 0010</code> 而是补码 <code>1111 1111 1110 1110</code>；在使用 <code>%hd</code> 打印的时候，计算机会把内存中的数据当作补码处理，所以需要先将它还原成原码 <code>1000 0000 0001 0010</code>，然后把原码转为十进制，所以输出的是 -18。</p>
+<p>当你使用 <code>%hu</code> 去打印变量a的时候，计算机会把这块内存的数据解释为正数，还记得之前提到的正数的补码和原码一样吗，计算机会把内存中的数据直接当作原码处理， <code>1111 1111 1110 1110</code> 转为十进制正好就是 65518 。</p>
+<p>看完变量a的讲解后，你是否能手动验证变量b的结果呢？</p>
+<p>变量b的原码是 <code>1111 1111 1110 1110</code>，由于它是正数，所以补码就等于原码；在使用 <code>%hu</code> 打印的时候，计算机会把内存中的数据直接当成原码处理，所以会输出 65518。</p>
+<p>如果使用 <code>%hd</code> 打印的话，计算机会把内存中的数据当做补码，补码转为原码是 <code>1000 0000 0001 0010</code>，发现了吗，这不就是 -18 的原码吗。</p>
+<blockquote>
+<p>发现了吗，65518 的补码&#x2F;原码正好和 -18 的补码一样(<code>简单的说，在内存中 65518 和 -18 的数据是一样的</code>)；有时候现实中2个完全不同的数可能在内存中的表现会一模一样，这也是为什么大部分情况下二进制无法还原回高级语言的原因。</p>
+</blockquote>
+<blockquote>
+<p>以变量a为例，不管它的类型是 <code>short</code> 还是 <code>unsigned short</code>，都不会影响 -18 这个值在内存中的存储方式，在读取变量a的值时，计算机首先找到变量a的地址，然后根据类型得到它的长度，short 的长度是 2 * 8 &#x3D; 16 个比特位，从变量a的地址开始，往后16个比特位就是变量a在内存中存储的数据，使用不同的符号打印(%hu、%hd)会影响计算机对这块内存的解释，但不会影响内存中的数据。</p>
+</blockquote>
+<hr>
+<p>回到开头那个数组越界的问题，18446744073709551615 其实就是把 -1 当作无符号数读取而来的。</p>
+<p>由于 <code>NSUInteger</code> 实际是 long 类型，占用 <code>8 * 8 = 64</code> 个比特位，-1 的原码是 <code>1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0001</code>，补码是 <code>1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111</code>，由于 <code>NSUInteger</code> 是无符号数，所以计算机会把补码当成原码使用，转为十进制正好就是 18446744073709551615 。</p>
+<p>解决起来也很简单，把 <code>NSUInteger</code> 用 <code>NSInteger</code> 代替就行了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在项目开发过程中，除了返回值、参数等特殊地方，建议统一使用有符号数(<code>NSInteger</code>)代替无符号数(<code>NSUInteger</code>)，这有如下好处：</p>
+<ol>
+<li>提高代码的统一性和兼容性。</li>
+<li>避免不同数字类型之间的转换问题，减少代码复杂度，降低代码BUG率。</li>
+</ol>
+<p>如果必须要使用无符号数，例如返回值、参数等，切记一定要在使用前检查数据正确性，例如使用强转判断值是否正确。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 无符号数作为方法参数</span></span><br><span class="line">- (<span class="type">void</span>)fun:(<span class="built_in">NSUInteger</span>)index &#123;</span><br><span class="line">    <span class="keyword">if</span> ((<span class="built_in">NSInteger</span>)index &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无符号数作为返回值</span></span><br><span class="line"><span class="built_in">NSInteger</span> _count;</span><br><span class="line">- (<span class="built_in">NSUInteger</span>)count &#123;</span><br><span class="line">    <span class="keyword">return</span> _count &lt; <span class="number">0</span> ? <span class="number">0</span> : (<span class="built_in">NSUInteger</span>)_count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>像文章中的这种问题属于数据异常，大部分情况下数据异常远比崩溃还要严重。</p>
+<p>数据异常可能会给用户或公司带来巨大损失；假设你开发一个计算器软件，把值算错了大概率会导致非常严重的后果和损失，如果让程序崩溃或死机，至少客户会选择其他计算器或计算方式而不会造成后面更严重的损失。</p>
+<p>另外数据异常这种问题通常很难发现，很容易成为线上BUG导致糟糕的用户体验(<code>建议大家平常使用单元测试来对代码进行定期体检，这样能大大降低类似的这种错误</code>)。</p>
+<p>在Swift中，如果你对一个无符号类型(<code>UInt</code>)变量不小心赋值了负数的话，将会得到一个运行时崩溃，说明数据异常确实比APP崩溃更严重。</p>
+<h2 id="题外话-为什么要使用补码"><a href="#题外话-为什么要使用补码" class="headerlink" title="题外话(为什么要使用补码)"></a><span id = "jump1">题外话(为什么要使用补码)</span></h2><p>由于加法和减法这种操作非常频繁，为了提高运算效率，所以它们一般都由硬件直接支持；如果直接使用原码存储的话，在计算类似 <code>6 - 18</code> 这样的表达式时将会得到错误的结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6 - 18 = 6 + (-18)</span><br><span class="line">= 0000 0000 0000 0110(原) + 1000 0000 0001 0010(原)</span><br><span class="line">= 1000 0000 0001 1000(原)</span><br><span class="line">= -24</span><br></pre></td></tr></table></figure>
+
+<p>很明显计算结果是不对的，于是有些人设计出了反码，用反码计算确实解决了 <code>6 - 18</code> 的问题，但是类似 <code>18 - 6</code> 这样的计算又出错了：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">18 - 6 = 18 + (-6)</span><br><span class="line">= 0000 0000 0001 0010(原) + 0000 0000 0000 0110(原)</span><br><span class="line">= 0000 0000 0001 0010(反) + 1111 1111 1111 1001(反)</span><br><span class="line">= 1 0000 0000 0000 1011(反) </span><br><span class="line">= 0000 0000 0000 1011(反) // 最左边的1内存容纳不了，所以直接截掉。</span><br><span class="line">= 0000 0000 0000 1011(原)</span><br><span class="line">= 11</span><br></pre></td></tr></table></figure>
+
+<p>计算结果离正确值还差1，__如果按照反码计算的话，小数减去大数会正确，但大数减去小数就始终会相差1__，还是那群人，又绞尽脑汁的设计出了补码(<code>该设计者因此获得了图灵奖</code>)。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">18 - 6 = 18 + (-6)</span><br><span class="line">= 0000 0000 0001 0010(原) + 0000 0000 0000 0110(原)</span><br><span class="line">= 0000 0000 0001 0010(反) + 1111 1111 1111 1001(反)</span><br><span class="line">= 0000 0000 0001 0010(补) + 1111 1111 1111 1010(补)</span><br><span class="line">= 1 0000 0000 0000 1100(补)</span><br><span class="line">= 0000 0000 0000 1100(补) // 最左边的1内存容纳不了，所以直接截掉。</span><br><span class="line">= 0000 0000 0000 1100(反)</span><br><span class="line">= 0000 0000 0000 1100(原)</span><br><span class="line">= 12</span><br></pre></td></tr></table></figure>
+
+<p>结果终于正确了，如果大家感兴趣的话可以手动计算一下 <code>13 - 5</code>、<code>5 - 13</code> 等等来巩固你学到的知识。</p>
+<blockquote>
+<p>计算机的设计是一门艺术，很多实用的技术都是权衡和妥协的结果。</p>
+</blockquote>
+<p>如果你还是不理解的话，建议你看看 <a target="_blank" rel="noopener" href="http://c.biancheng.net/view/vip_1761.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a>(<code>这是一篇付费文章，如果你不想付费的话请自行百度搜索关键字</code>)。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>不要把无符号数、有符号数和正数、负数搞混，无符号数肯定是正数，但有符号数未必是负数。</p>
+<p>计算机是对正数和负数的读写规则不一样，不是对无符号数和有符号数的读写规则不一样。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">布多</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://internetwei.github.io/2022/07/22/计算机基础/慎用unsigned类型/慎用unsigned类型/">https://internetwei.github.io/2022/07/22/计算机基础/慎用unsigned类型/慎用unsigned类型/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://internetwei.github.io">布多的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2023/10/21/iOS/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%20weak%20%E6%8C%87%E9%92%88%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%9A%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%20weak%20%E6%8C%87%E9%92%88%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%9A%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/"><i class="fa fa-chevron-left">  </i><span>揭开 iOS 中 weak 指针的神秘面纱：从原理到实践</span></a></div><div class="next-post pull-right"><a href="/2022/01/20/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/Code%20Reivew%E8%A7%84%E8%8C%83/Code%20Reivew%E8%A7%84%E8%8C%83/"><span>Code Review规范</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="lv-container" data-id="city" data-uid="MTAyMC81MzU5Ny8zMDA3MA=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div><footer class="footer-bg" style="background-image: url(images/backgroundImage.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2025 By 布多</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
