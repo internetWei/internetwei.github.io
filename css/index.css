@@ -171,7 +171,7 @@ table td {
   margin: 1rem 0;
   padding: 0;
   padding-top: 1.4rem;
-  background: #212121;
+  background: #263238;
   color: #eff;
   font-size: 14px;
   line-height: 20px;
@@ -214,7 +214,7 @@ blockquote {
   z-index: 0;
   min-width: 100%;
   height: 1.4rem;
-  background: #141414;
+  background: #1c2429;
   content: "";
 }
 .article-container .highlight pre {
@@ -223,14 +223,14 @@ blockquote {
   border: none;
 }
 .article-container .highlight .line::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container .highlight .line:before {
   display: inline-block;
   padding: 0 0.3rem 0 0;
   min-width: 1.6rem;
-  color: #424242;
+  color: #37474f;
   content: counter(line);
   counter-increment: line;
   text-align: left;
@@ -247,7 +247,7 @@ blockquote {
   z-index: 0;
   width: 100%;
   height: 1.4rem;
-  background: #141414;
+  background: #1c2429;
   content: "";
 }
 .article-container .highlight td {
@@ -302,15 +302,15 @@ blockquote {
 .article-container .highlight .gutter pre {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
-  background-color: #212121;
-  color: #424242;
+  background-color: #263238;
+  color: #37474f;
   text-align: right;
 }
 .article-container .highlight .code pre {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   width: 100%;
-  background-color: #212121;
+  background-color: #263238;
 }
 .article-container .highlight .line {
   height: 1rem;
@@ -340,10 +340,10 @@ blockquote {
   color: #c792ea;
 }
 .article-container pre .comment {
-  color: #4a4a4a;
+  color: #546e7a;
 }
 .article-container pre .comment::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .variable,
@@ -372,14 +372,14 @@ blockquote {
 .article-container pre .tag .name::selection,
 .article-container pre .css .class::selection,
 .article-container pre .css .pseudo::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .tag {
   color: #89ddff;
 }
 .article-container pre .tag::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .number,
@@ -396,14 +396,14 @@ blockquote {
 .article-container pre .params::selection,
 .article-container pre .constant::selection,
 .article-container pre .command::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .built_in {
   color: #ffcb6b;
 }
 .article-container pre .built_in::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .ruby .class .title,
@@ -430,7 +430,7 @@ blockquote {
 .article-container pre .special::selection,
 .article-container pre .number::selection,
 .article-container pre .formula::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .keyword,
@@ -441,7 +441,7 @@ blockquote {
 .article-container pre .keyword::selection,
 .article-container pre .title::selection,
 .article-container pre .css .hexcolor::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .function,
@@ -462,7 +462,7 @@ blockquote {
 .article-container pre .perl .sub::selection,
 .article-container pre .javascript .title::selection,
 .article-container pre .coffeescript .title::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 .article-container pre .tag .attr,
@@ -471,7 +471,7 @@ blockquote {
 }
 .article-container pre .tag .attr::selection,
 .article-container pre .javascript .function::selection {
-  background: rgba(97,97,97,0.314);
+  background: rgba(128,203,196,0.125);
   color: #eff;
 }
 #disqus_thread {
@@ -492,11 +492,11 @@ footer.is-mobile {
 }
 #footer {
   padding: 2rem 1rem;
-  color: #000;
+  color: #eee;
   text-align: center;
 }
 #footer a {
-  color: #000;
+  color: #eee;
   text-decoration: none;
   cursor: pointer;
 }
@@ -1499,7 +1499,7 @@ a.fancybox:focus {
   top: 0;
   right: 0;
   z-index: 1;
-  background: #141414;
+  background: #1c2429;
   color: #89ddff;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
