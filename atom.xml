@@ -3,11 +3,11 @@
   <title>布多的博客</title>
   
   
-  <link href="https://internetwei.github.io/atom.xml" rel="self"/>
+  <link href="https://budo.top/atom.xml" rel="self"/>
   
-  <link href="https://internetwei.github.io/"/>
+  <link href="https://budo.top/"/>
   <updated>2025-01-09T01:51:00.000Z</updated>
-  <id>https://internetwei.github.io/</id>
+  <id>https://budo.top/</id>
   
   <author>
     <name>布多</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>2024 再探ObjC-Category：动态特性与运行时实现的极致之美</title>
-    <link href="https://internetwei.github.io/2024/12/11/iOS/2024%20%E5%86%8D%E6%8E%A2ObjC-Category%EF%BC%9A%E5%8A%A8%E6%80%81%E7%89%B9%E6%80%A7%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%9E%81%E8%87%B4%E4%B9%8B%E7%BE%8E/"/>
-    <id>https://internetwei.github.io/2024/12/11/iOS/2024%20%E5%86%8D%E6%8E%A2ObjC-Category%EF%BC%9A%E5%8A%A8%E6%80%81%E7%89%B9%E6%80%A7%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%9E%81%E8%87%B4%E4%B9%8B%E7%BE%8E/</id>
+    <link href="https://budo.top/2024/12/11/iOS/2024%20%E5%86%8D%E6%8E%A2ObjC-Category%EF%BC%9A%E5%8A%A8%E6%80%81%E7%89%B9%E6%80%A7%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%9E%81%E8%87%B4%E4%B9%8B%E7%BE%8E/"/>
+    <id>https://budo.top/2024/12/11/iOS/2024%20%E5%86%8D%E6%8E%A2ObjC-Category%EF%BC%9A%E5%8A%A8%E6%80%81%E7%89%B9%E6%80%A7%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%9E%81%E8%87%B4%E4%B9%8B%E7%BE%8E/</id>
     <published>2024-12-11T11:37:00.000Z</published>
     <updated>2025-01-09T01:51:00.000Z</updated>
     
@@ -30,21 +30,21 @@
     
     
     
-    <category term="iOS" scheme="https://internetwei.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://budo.top/categories/iOS/"/>
     
     
-    <category term="ObjC" scheme="https://internetwei.github.io/tags/ObjC/"/>
+    <category term="ObjC" scheme="https://budo.top/tags/ObjC/"/>
     
-    <category term="Runtime" scheme="https://internetwei.github.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://budo.top/tags/Runtime/"/>
     
-    <category term="Category" scheme="https://internetwei.github.io/tags/Category/"/>
+    <category term="Category" scheme="https://budo.top/tags/Category/"/>
     
   </entry>
   
   <entry>
     <title>深入理解iOS中的RunLoop</title>
-    <link href="https://internetwei.github.io/2024/04/28/iOS/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3iOS%E4%B8%AD%E7%9A%84RunLoop/"/>
-    <id>https://internetwei.github.io/2024/04/28/iOS/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3iOS%E4%B8%AD%E7%9A%84RunLoop/</id>
+    <link href="https://budo.top/2024/04/28/iOS/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3iOS%E4%B8%AD%E7%9A%84RunLoop/"/>
+    <id>https://budo.top/2024/04/28/iOS/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3iOS%E4%B8%AD%E7%9A%84RunLoop/</id>
     <published>2024-04-28T11:37:00.000Z</published>
     <updated>2025-02-12T08:37:49.538Z</updated>
     
@@ -61,19 +61,19 @@
     
     
     
-    <category term="iOS" scheme="https://internetwei.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://budo.top/categories/iOS/"/>
     
     
-    <category term="ObjC" scheme="https://internetwei.github.io/tags/ObjC/"/>
+    <category term="ObjC" scheme="https://budo.top/tags/ObjC/"/>
     
-    <category term="RunLoop" scheme="https://internetwei.github.io/tags/RunLoop/"/>
+    <category term="RunLoop" scheme="https://budo.top/tags/RunLoop/"/>
     
   </entry>
   
   <entry>
     <title>揭开 iOS 中 weak 指针的神秘面纱：从原理到实践</title>
-    <link href="https://internetwei.github.io/2023/10/21/iOS/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%20weak%20%E6%8C%87%E9%92%88%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%9A%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/"/>
-    <id>https://internetwei.github.io/2023/10/21/iOS/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%20weak%20%E6%8C%87%E9%92%88%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%9A%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/</id>
+    <link href="https://budo.top/2023/10/21/iOS/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%20weak%20%E6%8C%87%E9%92%88%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%9A%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/"/>
+    <id>https://budo.top/2023/10/21/iOS/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%20weak%20%E6%8C%87%E9%92%88%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%9A%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/</id>
     <published>2023-10-20T16:00:00.000Z</published>
     <updated>2025-02-09T16:00:00.000Z</updated>
     
@@ -84,21 +84,21 @@
     
     
     
-    <category term="iOS" scheme="https://internetwei.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://budo.top/categories/iOS/"/>
     
     
-    <category term="ObjC" scheme="https://internetwei.github.io/tags/ObjC/"/>
+    <category term="ObjC" scheme="https://budo.top/tags/ObjC/"/>
     
-    <category term="Runtime" scheme="https://internetwei.github.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://budo.top/tags/Runtime/"/>
     
-    <category term="ARC" scheme="https://internetwei.github.io/tags/ARC/"/>
+    <category term="ARC" scheme="https://budo.top/tags/ARC/"/>
     
   </entry>
   
   <entry>
     <title>慎用unsigned类型</title>
-    <link href="https://internetwei.github.io/2022/07/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%85%8E%E7%94%A8unsigned%E7%B1%BB%E5%9E%8B/"/>
-    <id>https://internetwei.github.io/2022/07/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%85%8E%E7%94%A8unsigned%E7%B1%BB%E5%9E%8B/</id>
+    <link href="https://budo.top/2022/07/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%85%8E%E7%94%A8unsigned%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://budo.top/2022/07/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%85%8E%E7%94%A8unsigned%E7%B1%BB%E5%9E%8B/</id>
     <published>2022-07-22T04:04:00.000Z</published>
     <updated>2025-02-12T08:49:29.237Z</updated>
     
@@ -115,17 +115,17 @@
     
     
     
-    <category term="计算机基础" scheme="https://internetwei.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    <category term="计算机基础" scheme="https://budo.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="C" scheme="https://internetwei.github.io/tags/C/"/>
+    <category term="C" scheme="https://budo.top/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>Code Review规范</title>
-    <link href="https://internetwei.github.io/2022/01/20/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/Code%20Reivew%E8%A7%84%E8%8C%83/"/>
-    <id>https://internetwei.github.io/2022/01/20/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/Code%20Reivew%E8%A7%84%E8%8C%83/</id>
+    <link href="https://budo.top/2022/01/20/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/Code%20Reivew%E8%A7%84%E8%8C%83/"/>
+    <id>https://budo.top/2022/01/20/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/Code%20Reivew%E8%A7%84%E8%8C%83/</id>
     <published>2022-01-20T06:25:56.000Z</published>
     <updated>2025-02-11T11:05:04.381Z</updated>
     
@@ -146,15 +146,15 @@
     
     
     
-    <category term="开发规范" scheme="https://internetwei.github.io/categories/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
+    <category term="开发规范" scheme="https://budo.top/categories/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
     
     
   </entry>
   
   <entry>
     <title>Git命令手册</title>
-    <link href="https://internetwei.github.io/2021/08/11/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/"/>
-    <id>https://internetwei.github.io/2021/08/11/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/</id>
+    <link href="https://budo.top/2021/08/11/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/"/>
+    <id>https://budo.top/2021/08/11/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/</id>
     <published>2021-08-11T12:06:38.000Z</published>
     <updated>2025-02-12T08:37:39.864Z</updated>
     
@@ -172,17 +172,17 @@
     
     
     
-    <category term="开发工具" scheme="https://internetwei.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    <category term="开发工具" scheme="https://budo.top/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="Git" scheme="https://internetwei.github.io/tags/Git/"/>
+    <category term="Git" scheme="https://budo.top/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>Markdown语法备忘录</title>
-    <link href="https://internetwei.github.io/2021/03/08/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Markdown%E8%AF%AD%E6%B3%95%E5%A4%87%E5%BF%98%E5%BD%95/"/>
-    <id>https://internetwei.github.io/2021/03/08/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Markdown%E8%AF%AD%E6%B3%95%E5%A4%87%E5%BF%98%E5%BD%95/</id>
+    <link href="https://budo.top/2021/03/08/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Markdown%E8%AF%AD%E6%B3%95%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    <id>https://budo.top/2021/03/08/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Markdown%E8%AF%AD%E6%B3%95%E5%A4%87%E5%BF%98%E5%BD%95/</id>
     <published>2021-03-08T14:38:38.000Z</published>
     <updated>2025-02-12T08:49:41.631Z</updated>
     
@@ -199,17 +199,17 @@
     
     
     
-    <category term="开发工具" scheme="https://internetwei.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    <category term="开发工具" scheme="https://budo.top/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="Markdown" scheme="https://internetwei.github.io/tags/Markdown/"/>
+    <category term="Markdown" scheme="https://budo.top/tags/Markdown/"/>
     
   </entry>
   
   <entry>
     <title>LLDynamicLaunchScreen的设计思路</title>
-    <link href="https://internetwei.github.io/2021/03/07/iOS/LLDynamicLaunchScreen%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/"/>
-    <id>https://internetwei.github.io/2021/03/07/iOS/LLDynamicLaunchScreen%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/</id>
+    <link href="https://budo.top/2021/03/07/iOS/LLDynamicLaunchScreen%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/"/>
+    <id>https://budo.top/2021/03/07/iOS/LLDynamicLaunchScreen%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/</id>
     <published>2021-03-07T15:24:38.000Z</published>
     <updated>2025-02-12T08:43:19.293Z</updated>
     
@@ -226,19 +226,19 @@
     
     
     
-    <category term="iOS" scheme="https://internetwei.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://budo.top/categories/iOS/"/>
     
     
-    <category term="ObjC" scheme="https://internetwei.github.io/tags/ObjC/"/>
+    <category term="ObjC" scheme="https://budo.top/tags/ObjC/"/>
     
-    <category term="Framework" scheme="https://internetwei.github.io/tags/Framework/"/>
+    <category term="Framework" scheme="https://budo.top/tags/Framework/"/>
     
   </entry>
   
   <entry>
     <title>iOS适配深色模式最佳方法，绝对干货</title>
-    <link href="https://internetwei.github.io/2020/12/05/iOS/iOS%E9%80%82%E9%85%8D%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F%E6%9C%80%E4%BD%B3%E6%96%B9%E6%B3%95%EF%BC%8C%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7/"/>
-    <id>https://internetwei.github.io/2020/12/05/iOS/iOS%E9%80%82%E9%85%8D%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F%E6%9C%80%E4%BD%B3%E6%96%B9%E6%B3%95%EF%BC%8C%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7/</id>
+    <link href="https://budo.top/2020/12/05/iOS/iOS%E9%80%82%E9%85%8D%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F%E6%9C%80%E4%BD%B3%E6%96%B9%E6%B3%95%EF%BC%8C%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7/"/>
+    <id>https://budo.top/2020/12/05/iOS/iOS%E9%80%82%E9%85%8D%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F%E6%9C%80%E4%BD%B3%E6%96%B9%E6%B3%95%EF%BC%8C%E7%BB%9D%E5%AF%B9%E5%B9%B2%E8%B4%A7/</id>
     <published>2020-12-04T16:00:00.000Z</published>
     <updated>2025-02-12T08:37:45.355Z</updated>
     
@@ -255,12 +255,12 @@
     
     
     
-    <category term="iOS" scheme="https://internetwei.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://budo.top/categories/iOS/"/>
     
     
-    <category term="ObjC" scheme="https://internetwei.github.io/tags/ObjC/"/>
+    <category term="ObjC" scheme="https://budo.top/tags/ObjC/"/>
     
-    <category term="Framework" scheme="https://internetwei.github.io/tags/Framework/"/>
+    <category term="Framework" scheme="https://budo.top/tags/Framework/"/>
     
   </entry>
   
