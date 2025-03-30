@@ -183,7 +183,7 @@
 </tr>
 </tbody></table>
 <h2 id="常见误区与最佳实践"><a href="#常见误区与最佳实践" class="headerlink" title="常见误区与最佳实践"></a>常见误区与最佳实践</h2><p>在实际开发中，我们经常会遇到一些对 AutoreleasePool 使用的误区。其中最常见的就是在循环中过度使用 @autoreleasepool，例如：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        Person *per = [[Person alloc] init];</span><br><span class="line">        <span class="comment">// 对 per 进行的操作……</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        Person *per = [[Person alloc] init];</span><br><span class="line">        <span class="comment">// 对 per 进行的操作……</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这段代码中的 per 对象是 __strong 类型，它会在每次循环结束时立即释放，无需等待自动释放池的清理。这种情况下添加 @autoreleasepool 并不会带来任何性能优势，反而会因为频繁创建和销毁自动释放池而增加开销。</p>
 <p>因此，@autoreleasepool 的使用需要遵循以下原则：</p>
