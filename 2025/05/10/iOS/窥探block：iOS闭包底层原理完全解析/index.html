@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="窥探block：iOS闭包底层原理完全解析"><meta name="keywords" content="block"><meta name="author" content="布多"><meta name="copyright" content="布多"><title>窥探block：iOS闭包底层原理完全解析 | 布多的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f0d94d3f99211c3546490e469f6ecbd8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.3.0'
+} </script><link rel="alternate" href="/atom.xml" title="布多的博客" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block-%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">block 的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E6%8D%95%E8%8E%B7%E6%9C%BA%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">变量捕获机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block-%E4%BF%AE%E9%A5%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">__block 修饰符详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block-%E7%9A%84%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">block 的三种类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">6.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/images/avatar.jpg"></div><div class="author-info__name text-center">布多</div><div class="author-info__description text-center">前进！前进！！不择手段地前进！！！</div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/internetwei">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">15</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">11</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友链</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.coderqi.com/">齐小胖之家</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/images/backgroundImage.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">布多的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">窥探block：iOS闭包底层原理完全解析</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2025-05-10</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/iOS/">iOS</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">3.3k</span><span class="post-meta__separator">|</span><span>阅读时长: 11 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>由 布多(budo) 发布于 2025-05-10</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>block 是 iOS 开发中一个非常常用的特性，它允许我们将执行逻辑和数据封装成一个代码块，并将其作为函数参数、返回值进行传递。这种设计使得 block 在实现回调、异步操作、链式调用等场景时变得异常优雅和高效。block 最引人注目的特性在于它能够捕获并持有外部变量，这使得它在处理异步任务、事件响应等场景中表现出色，同时也为开发者提供了极大的灵活性。</p>
+<p>本文将和大家一起深入剖析 block 的底层实现原理，从内部数据结构、内存管理机制到使用注意事项等多个维度，帮助读者全面理解这一技术的精髓，从而在实际开发中更好地运用 block 特性。</p>
+<p>关于 block 的数据结构是开源的，在 <a target="_blank" rel="noopener" href="https://github.com/apple-oss-distributions/libclosure/tree/main">libclosure</a> 库中，感兴趣的可以去看一下。</p>
+<h2 id="block-的本质"><a href="#block-的本质" class="headerlink" title="block 的本质"></a>block 的本质</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">void</span> (^block)(<span class="type">void</span>) = ^&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;----block-----\n&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">block</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码展示了 block 的基本用法。为了深入理解 block 的底层实现原理，我们可以使用 clang 编译器将其转换为 C++ 代码。通过分析转换后的代码，我们可以清晰地看到 block 在底层的具体结构，包括其内部的数据组织方式、函数指针的存储位置以及内存布局等关键细节。</p>
+<blockquote>
+<p>使用 <code>xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc -fobjc-arc -fobjc-runtime=ios-18.0.0 main.m</code> 命令可以将 main.m 文件内的代码转换为 C++ 代码。 注意：转换后的 C++ 代码并不是真正执行的代码，仅供参考。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// block 的结构体。</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">__main_block_impl_0</span> &#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">__block_impl</span> impl;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">__main_block_desc_0</span>* Desc;</span><br><span class="line">  </span><br><span class="line">  __main_block_impl_0(<span class="type">void</span> *fp, <span class="keyword">struct</span> __main_block_desc_0 *desc, <span class="type">int</span> flags=<span class="number">0</span>) &#123;</span><br><span class="line">    impl.isa = &amp;_NSConcreteStackblock;</span><br><span class="line">    impl.Flags = flags;</span><br><span class="line">    impl.FuncPtr = fp;</span><br><span class="line">    Desc = desc;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// block 的执行体。</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __main_block_func_0(<span class="keyword">struct</span> __main_block_impl_0 *__cself) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;----block-----\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// block 的描述信息。</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">struct</span> <span class="title class_">__main_block_desc_0</span> &#123;</span><br><span class="line">  <span class="type">size_t</span> reserved;</span><br><span class="line">  <span class="type">size_t</span> block_size;</span><br><span class="line">&#125; __main_block_desc_0_DATA = &#123; <span class="number">0</span>, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> __main_block_impl_0)&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">__block_impl</span> &#123;</span><br><span class="line">  <span class="type">void</span> *isa;</span><br><span class="line">  <span class="type">int</span> Flags;</span><br><span class="line">  <span class="type">int</span> Reserved;</span><br><span class="line">  <span class="comment">// 指向 block 执行体的函数指针。</span></span><br><span class="line">  <span class="type">void</span> *FuncPtr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">void</span> (*block)(<span class="type">void</span>) = &amp;__main_block_impl_0(__main_block_func_0, &amp;__main_block_desc_0_DATA);</span><br><span class="line">    block-&gt;<span class="built_in">FuncPtr</span>(block);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过分析转换后的代码，我们可以得出以下结论：</p>
+<ol>
+<li><p>block 本质上是一个 ObjC 对象。因为在 ObjC 中，任何以 <code>isa</code> 指针作为首成员的结构体都可以被视为一个对象。从代码中可以看到，<code>__block_impl</code> 结构体的第一个成员就是 <code>void *isa</code>。</p>
+</li>
+<li><p>block 的创建过程实际上是在初始化一个 <code>__main_block_impl_XXX</code> 结构体实例。这个结构体主要包含了：</p>
+<ul>
+<li><code>__block_impl</code> 结构体（主要包含 isa 指针和函数指针）；</li>
+<li><code>__main_block_desc_0</code> 结构体指针（主要包含 block 相关的描述信息）。</li>
+</ul>
+</li>
+<li><p>block 的执行过程：</p>
+<ul>
+<li>系统会将 block 的代码块编译成一个全局函数（如 <code>__main_block_func_0</code>）；</li>
+<li>这个全局函数的地址会被保存在 <code>__block_impl</code> 的 <code>FuncPtr</code> 成员中；</li>
+<li>当调用 block 时，实际上是通过 <code>FuncPtr</code> 找到这个全局函数调用，并把 block 本身作为参数传递给这个函数。</li>
+</ul>
+</li>
+</ol>
+<h2 id="变量捕获机制"><a href="#变量捕获机制" class="headerlink" title="变量捕获机制"></a>变量捕获机制</h2><p>当 block 捕获外部变量时，编译器会根据捕获变量的类型和修饰符，生成不同的 block 结构体。这种设计使得 block 能够正确地管理不同类型变量的内存和生命周期。主要分为以下几种捕获情况：</p>
+<ol>
+<li>捕获全局变量；</li>
+<li>捕获局部变量(分为基本类型和对象类型)；</li>
+<li>捕获静态变量。</li>
+</ol>
+<p>另外还有关于捕获 __block 修饰的变量，这个我们会在后面的 <a href="#block-%E4%BF%AE%E9%A5%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3">__block 修饰符详解</a> 章节详细讨论。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> global_age = <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">  <span class="type">int</span> age = <span class="number">10</span>;</span><br><span class="line">  <span class="type">static</span> <span class="type">int</span> static_age = <span class="number">20</span>;</span><br><span class="line">  Person *per = [[Person alloc] init];</span><br><span class="line">  <span class="function">__weak <span class="title">typeof</span><span class="params">(per)</span> weakPer </span>= per;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">void</span> (^block)(<span class="type">void</span>) = ^&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;block: %p, %p, %d, %d, %d\n&quot;</span>, per, weakPer, age, static_age, global_age);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="built_in">block</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码展示了 block 捕获外部变量的几种典型场景：全局变量（global_age）、局部基本类型变量（age）、局部对象类型变量（per 和 weakPer）以及静态变量（static_age）。通过分析这些不同场景下的 block 实现，我们可以更全面地理解 block 的变量捕获机制。下面让我们通过转换后的 C++ 代码来深入分析其底层实现。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// block 的结构体。</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">__main_block_impl_0</span> &#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">__block_impl</span> impl;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">__main_block_desc_0</span>* Desc;</span><br><span class="line">  Person *__strong per;</span><br><span class="line">  Person *__weak weakPer;</span><br><span class="line">  <span class="type">int</span> age;</span><br><span class="line">  <span class="type">int</span> *static_age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// block 的执行体。</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __main_block_func_0(<span class="keyword">struct</span> __main_block_impl_0 *__cself) &#123;</span><br><span class="line">    Person *__strong per = __cself-&gt;per;</span><br><span class="line">    Person *__weak weakPer = __cself-&gt;weakPer;</span><br><span class="line">    <span class="type">int</span> age = __cself-&gt;age;</span><br><span class="line">    <span class="type">int</span> *static_age = __cself-&gt;static_age;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;block: %p, %p, %d, %d, %d\n&quot;</span>, per, weakPer, age, *static_age, global_age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当 block 被拷贝到堆上时，会调用这个函数对捕获的对象变量进行内存管理。</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __main_block_copy_0(<span class="keyword">struct</span> __main_block_impl_0*dst, <span class="keyword">struct</span> __main_block_impl_0*src) &#123;</span><br><span class="line">    _block_object_assign((<span class="type">void</span>*)&amp;dst-&gt;per, (<span class="type">void</span>*)src-&gt;per, <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当 block 释放时，会调用这个函数对捕获的对象变量进行释放。</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __main_block_dispose_0(<span class="keyword">struct</span> __main_block_impl_0*src) &#123;</span><br><span class="line">    _block_object_dispose((<span class="type">void</span>*)src-&gt;per, <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// block 的描述信息。</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">struct</span> <span class="title class_">__main_block_desc_0</span> &#123;</span><br><span class="line">  <span class="type">size_t</span> reserved;</span><br><span class="line">  <span class="type">size_t</span> block_size;</span><br><span class="line">  <span class="built_in">void</span> (*copy)(<span class="keyword">struct</span> __main_block_impl_0*, <span class="keyword">struct</span> __main_block_impl_0*);</span><br><span class="line">  <span class="built_in">void</span> (*dispose)(<span class="keyword">struct</span> __main_block_impl_0*);</span><br><span class="line">&#125; __main_block_desc_0_DATA = &#123; <span class="number">0</span>, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> __main_block_impl_0), __main_block_copy_0, __main_block_dispose_0&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 此处省略了 age、per、weakPer、static_age 的初始化代码。</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">void</span> (*block)(<span class="type">void</span>) = &amp;__main_block_impl_0(__main_block_func_0, </span><br><span class="line">                                            &amp;__main_block_desc_0_DATA, </span><br><span class="line">                                            per, weakPer, age, </span><br><span class="line">                                            &amp;static_age, <span class="number">570425344</span>);</span><br><span class="line">  block-&gt;<span class="built_in">FuncPtr</span>(block);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过分析转换后的代码，我们可以清晰地看到 block 捕获变量的本质：block 会将捕获的变量作为成员变量存储在其结构体中。根据变量的作用域和类型，block 的捕获机制可以分为以下几种情况：</p>
+<ol>
+<li><p>局部变量：block 会将局部变量作为初始化参数传入，并作为成员变量存储在结构体中。这种捕获方式对基本类型和对象类型都适用，另外，如果捕获了对象类型，还会保留其内存修饰符（如 __strong、__weak）。</p>
+</li>
+<li><p>全局变量：由于全局变量在整个程序生命周期内都存在，block 不会对其进行捕获，而是在内部直接访问。</p>
+</li>
+<li><p>静态变量：block 会捕获局部 static 变量的指针而不是变量的值，并将其存储在结构体中。这样设计使得 block 可以访问和修改静态变量的值。</p>
+</li>
+</ol>
+<p>关于 block 的内存管理机制，主要涉及以下三个方面：</p>
+<ol>
+<li><p>对象变量的捕获管理：在 ARC 环境下，当 block 捕获了对象类型的变量时，系统会调用 <code>__main_block_copy_XXX</code> 函数进行内存管理，确保对象在 block 执行期间不会被释放。</p>
+</li>
+<li><p>对象变量的释放管理：当 block 被释放时，系统会调用 <code>__main_block_dispose_XXX</code> 函数，对捕获的对象变量进行适当的释放操作，防止内存泄漏。</p>
+</li>
+<li><p>block 在捕获对象类型变量时，会同时捕获其内存修饰符（如 __strong、__weak）。从代码中可以看到，per 和 weakPer 在结构体中被分别声明为 __strong 和 __weak 类型。这种设计使得 block 能够正确处理对象的内存管理，这也是为什么在 block 内部使用 weak 引用可以有效避免循环引用的根本原因。</p>
+</li>
+</ol>
+<h2 id="block-修饰符详解"><a href="#block-修饰符详解" class="headerlink" title="__block 修饰符详解"></a>__block 修饰符详解</h2><p>在 block 中，默认情况下捕获的变量是只读的，无法在 block 内部修改。这是因为 block 在捕获变量时，实际上是将变量的值复制到自己的结构体中。如果我们需要在 block 内部修改捕获的变量，并在 block 执行后保持这些修改，就需要使用 __block 修饰符。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">  __block <span class="type">int</span> age = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">void</span> (^block)(<span class="type">void</span>) = ^&#123;</span><br><span class="line">    age = <span class="number">20</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">block</span>();</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;age: %d&quot;</span>, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过 clang 编译器将上述代码转换为 C++ 代码后，我们可以看到 __block 修饰符的底层实现：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// __block 修饰符的结构体。</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">__block_byref_age_0</span> &#123;</span><br><span class="line">  <span class="type">void</span> *__isa;</span><br><span class="line">  __block_byref_age_0 *__forwarding;</span><br><span class="line">  <span class="type">int</span> __flags;</span><br><span class="line">  <span class="type">int</span> __size;</span><br><span class="line">  <span class="type">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// block 的执行体。</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __main_block_func_0(<span class="keyword">struct</span> __main_block_impl_0 *__cself) &#123;</span><br><span class="line">    __block_byref_age_0 *age = __cself-&gt;age;</span><br><span class="line">    age-&gt;__forwarding-&gt;age = <span class="number">20</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 等价于 __block int age = 10;</span></span><br><span class="line">  __block_byref_age_0 age = &#123;</span><br><span class="line">    <span class="number">0</span>,</span><br><span class="line">    &amp;age,</span><br><span class="line">    <span class="number">0</span>,</span><br><span class="line">    <span class="built_in">sizeof</span>(__block_byref_age_0),</span><br><span class="line">    <span class="number">20</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">void</span> (*block)(<span class="type">void</span>) = &amp;__main_block_impl_0(__main_block_func_0,</span><br><span class="line">                                            &amp;__main_block_desc_0_DATA,</span><br><span class="line">                                            &amp;age,</span><br><span class="line">                                            <span class="number">570425344</span>);</span><br><span class="line"></span><br><span class="line">  block-&gt;<span class="built_in">FuncPtr</span>(block);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;age: %d&quot;</span>, age.__forwarding-&gt;age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过分析 clang 转换后的 C++ 代码，我们可以深入理解 __block 修饰符的底层实现机制：</p>
+<ol>
+<li><p>__block 修饰符的本质是将变量包装成一个结构体对象（__block_byref_xxx），这个结构体包含了变量的值、__forwarding 指针等元数据。</p>
+</li>
+<li><p>当 block 捕获 __block 变量时，实际上捕获的是这个结构体对象的指针。这样设计的好处是：</p>
+<ul>
+<li>通过指针访问，block 可以修改原始变量的值</li>
+<li>__forwarding 指针的存在，使得变量在 block 被拷贝到堆上时仍能正确访问</li>
+<li>实现了变量的可修改性和数据同步</li>
+</ul>
+</li>
+<li><p>这种实现虽然巧妙，但也带来了一些性能开销：</p>
+<ul>
+<li>每次访问变量都需要通过指针间接访问</li>
+<li>结构体对象本身会占用额外的内存空间</li>
+<li>在频繁访问的场景下可能会影响性能</li>
+</ul>
+</li>
+</ol>
+<p>因此，在使用 __block 修饰符时，需要权衡其带来的便利性和性能开销。对于简单的场景，可以考虑使用指针或其他替代方案。</p>
+<p>下面这段代码展示了如何使用指针来替代 __block 修饰符，实现 block 内部修改外部变量的功能：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">  <span class="type">int</span> age = <span class="number">10</span>;</span><br><span class="line">  <span class="type">int</span> *pointer_age = &amp;age;</span><br><span class="line">  <span class="built_in">void</span> (^block)(<span class="type">void</span>) = ^&#123;</span><br><span class="line">     *pointer_age = <span class="number">20</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="built_in">block</span>();</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;age: %d\n&quot;</span>, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="block-的三种类型"><a href="#block-的三种类型" class="headerlink" title="block 的三种类型"></a>block 的三种类型</h2><p>从 <a target="_blank" rel="noopener" href="https://github.com/apple-oss-distributions/libclosure/tree/main">libclosure</a> 库的源码中，我们可以看到 block 在底层实现中定义了 6 种类型：_NSConcreteStackblock、_NSConcreteMallocblock、_NSConcreteAutoblock、_NSConcreteFinalizingblock、_NSConcreteGlobalblock 和 _NSConcreteWeakblockVariable。</p>
+<p>在实际开发中，我们最常遇到的是以下三种类型：</p>
+<ul>
+<li><p>_NSConcreteGlobalblock（全局 block）：这种类型的 block 存储在数据区（.data 段），特点是未捕获任何外部变量。由于不需要保存上下文，它的生命周期与程序相同，是最轻量级的 block 类型。</p>
+</li>
+<li><p>_NSConcreteStackblock（栈 block）：这种类型的 block 存储在栈区，在 ARC 环境下我们很少直接遇到这种类型。这是因为 ARC 会自动将被强引用的 block 从栈上拷贝到堆上。</p>
+</li>
+<li><p>_NSConcreteMallocblock（堆 block）：这种类型的 block 存储在堆区，是我们在 ARC 环境下最常见到的 block 类型。当 block 捕获了对象变量时，系统会自动将其拷贝到堆上，并调用 <code>__main_block_copy_XXX</code> 和 <code>__main_block_dispose_XXX</code> 函数来管理捕获的对象变量的内存生命周期。</p>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>在使用 block 时，我们需要注意以下几个关键点：</p>
+<ol>
+<li><p><strong>内存管理</strong></p>
+<p> 在 ARC 环境下，block 会自动管理内存，但对于捕获的对象类型，block 会强引用该对象，此时需要特别注意循环引用问题。可惜使用 weak 引用来避免循环引用。</p>
+</li>
+<li><p><strong>变量捕获机制</strong></p>
+<p> block 默认采用值捕获方式，会复制外部变量的值到 block 内部。如果你需要修改外部的变量值，可以使用 __block 修饰符。但使用 __block 修饰符会带来额外的内存开销，在性能敏感场景下，可以考虑使用指针替代 __block 修饰符。</p>
+</li>
+<li><p><strong>线程安全</strong></p>
+<p> block 本身是线程安全的，但需要注意在多个线程的 block 中同时访问共享资源时可能存在线程安全问题。建议使用适当的同步机制（如 dispatch_sync、锁等）。</p>
+</li>
+<li><p><strong>使用建议</strong></p>
+<ul>
+<li>优先使用普通变量而不是 __block，除非确实需要修改变量值</li>
+<li>对于简单的回调场景，可以考虑使用 delegate 模式代替 block</li>
+<li>在异步操作中，注意处理 block 的调用时机和内存管理</li>
+</ul>
+</li>
+</ol>
+<p>通过合理使用这些特性，我们可以充分发挥 block 的优势，同时避免常见的内存和性能问题。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过分析 clang 转换后的 C++ 代码和 <a target="_blank" rel="noopener" href="https://github.com/apple-oss-distributions/libclosure/tree/main">libclosure</a> 源码，我们可以清晰地看到 block 的本质：它是一个封装了函数执行逻辑和上下文环境的 ObjC 对象。</p>
+<p>在编译阶段，编译器会进行以下转换：</p>
+<ol>
+<li>将 block 的代码块编译成一个全局函数。</li>
+<li>创建一个 block 对象，该对象主要包含：<ul>
+<li>指向全局函数的函数指针</li>
+<li>block 的描述信息（如类型、大小等）</li>
+<li>捕获的外部变量</li>
+</ul>
+</li>
+</ol>
+<p>当 block 被调用时，系统会：</p>
+<ol>
+<li>通过 block 对象获取内部函数指针</li>
+<li>将 block 对象本身作为参数传递给该函数</li>
+<li>函数内部可以通过 block 对象访问和修改捕获的变量</li>
+</ol>
+<p>这种设计非常巧妙，使得 block 既能像普通对象一样进行内存管理，又能像函数一样被调用，同时还能捕获外部变量。这种多面性使得 block 成为了 iOS 开发中最强大的编程特性之一。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">布多</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://budo.top/2025/05/10/iOS/窥探block：iOS闭包底层原理完全解析/">https://budo.top/2025/05/10/iOS/窥探block：iOS闭包底层原理完全解析/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://budo.top">布多的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/block/">block</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2025/04/07/iOS/iOS%E5%88%86%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%85%B3%E8%81%94%E5%AF%B9%E8%B1%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%AA%81%E7%A0%B4Category%E7%9A%84%E5%AD%98%E5%82%A8%E9%99%90%E5%88%B6/"><span>iOS分类中的关联对象：如何用运行时突破Category的存储限制</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="lv-container" data-id="city" data-uid="MTAyMC81MzU5Ny8zMDA3MA=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div><footer class="footer-bg" style="background-image: url(/images/backgroundImage.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2025 By 布多</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
