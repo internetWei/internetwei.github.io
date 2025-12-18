@@ -15,8 +15,8 @@
   },
   hexoVersion: '6.3.0'
 } </script><link rel="alternate" href="/atom.xml" title="布多的博客" type="application/atom+xml">
-</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">字符编码的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode-%E7%9A%84%E8%AF%9E%E7%94%9F%E4%B8%8E%E5%8F%91%E5%B1%95"><span class="toc-number">2.</span> <span class="toc-text">Unicode 的诞生与发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode-%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%89%B9%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">Unicode 的内部结构与特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-%E7%9A%84%E8%AF%9E%E7%94%9F"><span class="toc-number">4.</span> <span class="toc-text">UTF 的诞生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-8"><span class="toc-number">4.1.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-16"><span class="toc-number">4.2.</span> <span class="toc-text">UTF-16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-32"><span class="toc-number">4.3.</span> <span class="toc-text">UTF-32</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-%E5%90%84%E4%B8%AA%E7%BC%96%E7%A0%81%E6%96%B9%E6%A1%88%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">5.</span> <span class="toc-text">UTF 各个编码方案的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text">字节序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">7.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">9.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/images/avatar.jpg"></div><div class="author-info__name text-center">布多</div><div class="author-info__description text-center">前进！前进！！不择手段地前进！！！</div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/internetwei">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">20</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">14</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友链</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.coderqi.com/">齐小胖之家</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/images/backgroundImage.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">布多的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">字符编码的秘密：Unicode 和 UTF 到底是什么？</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2025-05-21</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">5.5k</span><span class="post-meta__separator">|</span><span>阅读时长: 17 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><blockquote>
-<p>由 布多(budo) 发布于 2025-05-21，更新于 2025-05-22</p>
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">字符编码的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode-%E7%9A%84%E8%AF%9E%E7%94%9F%E4%B8%8E%E5%8F%91%E5%B1%95"><span class="toc-number">2.</span> <span class="toc-text">Unicode 的诞生与发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode-%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%89%B9%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">Unicode 的内部结构与特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-%E7%9A%84%E8%AF%9E%E7%94%9F"><span class="toc-number">4.</span> <span class="toc-text">UTF 的诞生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-8"><span class="toc-number">4.1.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-16"><span class="toc-number">4.2.</span> <span class="toc-text">UTF-16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-32"><span class="toc-number">4.3.</span> <span class="toc-text">UTF-32</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-%E5%90%84%E4%B8%AA%E7%BC%96%E7%A0%81%E6%96%B9%E6%A1%88%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">5.</span> <span class="toc-text">UTF 各个编码方案的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text">字节序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">7.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">9.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/images/avatar.jpg"></div><div class="author-info__name text-center">布多</div><div class="author-info__description text-center">前进！前进！！不择手段地前进！！！</div><div class="follow-button"><a target="_blank" rel="noopener" href="https://github.com/internetwei">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">20</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">14</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友链</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.coderqi.com/">齐小胖之家</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/images/backgroundImage.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">布多的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">首页</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">字符编码的秘密：Unicode 和 UTF 到底是什么？</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2025-05-21</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">6.1k</span><span class="post-meta__separator">|</span><span>阅读时长: 19 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>由 布多(budo) 发布于 2025-05-21，更新于 2025-12-19</p>
 </blockquote>
 <h2 id="字符编码的起源"><a href="#字符编码的起源" class="headerlink" title="字符编码的起源"></a>字符编码的起源</h2><p>在计算机的世界里，所有信息最终都被转换成二进制数据存储。每个二进制位（bit）只有 0 和 1 两种状态，8 个二进制位组成一个字节（byte），可以表示 256 种不同的状态（2^8 &#x3D; 256）。如果用一个状态对应一个字符，那么一个字节就能表示 256 个不同的字符，范围从 <code>0x00</code> 到 <code>0xFF</code>。</p>
 <p>20 世纪 60 年代，美国制定了 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> 编码标准，将英文字符与二进制数据一一对应。ASCII 编码定义了 128 个字符，包括英文字母、数字、标点符号等。例如，字母 A 对应的二进制值是 <code>0x41</code>。注意：ASCII 只使用了字节中的低 7 位，最高位固定为 0。</p>
@@ -94,22 +94,55 @@
 </li>
 </ol>
 <p>举例说明：</p>
+<ol>
+<li>字符 <strong>A</strong><br>它的 Unicode 码点是 <strong>U+0041</strong>，只需 1 个字节即可存储。根据 UTF-8 单字节编码规则，首位为 0，后面 7 位表示字符编码，因此内存布局为 <strong>0100 0001</strong>。首位 0 表示单字节（往后读取 1 个字节长度），后面 <strong>0100 0001</strong>（对应十六进制 <strong>0x41</strong>）就是字符 ‘A’ 在 Unicode 中的码点。</li>
+</ol>
 <ul>
-<li>ASCII 字符 ‘A’(U+0041)：单字节 <code>0x41</code> → <code>0100 0001</code>；</li>
-<li>汉字 “严”(U+4E25)：三字节 <code>0xE4B8A5</code> → <code>1110 0100, 1011 1000, 1010 0101</code>；</li>
-<li>emoji “🍑”(U+1F351)：四字节 <code>0xF09F8D91</code> → <code>1111 0000, 1001 1111, 1000 1101, 1001 0001</code>；</li>
+<li>Unicode 码点：<strong>U+0041</strong> (十六进制)</li>
+<li>UTF-8 编码：<strong>0x41</strong> (1 字节) &#x3D;&#x3D; <strong>0100 0001</strong> (二进制)</li>
+<li>解析过程：首位为 <strong>0</strong>，表示这是单字节编码；后 7 位 <strong>100 0001</strong> 直接存储 Unicode 码点，转换为十六进制即为 <strong>0x41</strong>，与 Unicode 码点一致。</li>
+</ul>
+<ol start="2">
+<li>汉字 <strong>严</strong></li>
+</ol>
+<ul>
+<li>Unicode 码点：<strong>U+4E25</strong> (十六进制)</li>
+<li>UTF-8 编码：<strong>0xE4B8A5</strong> (十六进制) &#x3D;&#x3D; <strong>1110 0100, 1011 1000, 1010 0101</strong> (二进制)</li>
+<li>解析过程：<ul>
+<li>首字节以 <strong>1110</strong> 开头（连续 3 个 1），表示这是 3 字节编码</li>
+<li>后续每个字节均以 <strong>10</strong> 开头</li>
+<li>提取有效位：去除首字节的 <strong>1110</strong> 和后续字节的 <strong>10</strong> 前缀</li>
+<li>有效位组合：<strong>0100, 11 1000, 10 0101</strong> &#x3D;&gt; <strong>0100 1110 0010 0101</strong></li>
+<li>转换为十六进制：<strong>0x4E25</strong>，与 Unicode 码点一致</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>表情符号 <strong>🍑</strong></li>
+</ol>
+<ul>
+<li>Unicode 码点：<strong>U+1F351</strong> (十六进制)</li>
+<li>UTF-8 编码：<strong>0xF09F8D91</strong> (4 字节) &#x3D;&#x3D; <strong>1111 0000, 1001 1111, 1000 1101, 1001 0001</strong> (二进制)</li>
+<li>解析过程：<ul>
+<li>首字节以 <strong>1111</strong> 开头（连续 4 个 1），表示这是 4 字节编码</li>
+<li>后续每个字节均以 <strong>10</strong> 开头</li>
+<li>提取有效位：去除首字节的 <strong>1111</strong> 和后续字节的 <strong>10</strong> 前缀</li>
+<li>有效位组合：<strong>000, 01 1111, 00 1101, 01 0001</strong> &#x3D;&gt; <strong>0001 1111 0011 0101 0001</strong></li>
+<li>转换为十六进制：<strong>0x1F351</strong>，与 Unicode 码点一致。</li>
+</ul>
+</li>
 </ul>
 <h3 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h3><p>UTF-16 是另一种常见的 Unicode 编码方案，它采用了一种巧妙的变长编码设计：对于基本多文种平面（BMP）的字符使用 2 字节存储，而对于辅助平面的字符则使用 4 字节存储。这种设计既保证了编码效率，又解决了字符表示的问题。让我们详细了解一下它的工作原理：</p>
 <p><strong>基本多文种平面（BMP）字符的编码规则：</strong></p>
-<p>对于 BMP 范围内的字符（码点范围：0x0000 到 0xFFFF），UTF-16 采用直接存储的方式，将 Unicode 码点转换为 2 字节的二进制数据。例如：</p>
-<ul>
-<li>ASCII 字符 ‘A’(U+0041)：存储为 <code>0x0041</code></li>
-<li>汉字 “严”(U+4E25)：存储为 <code>0x4E25</code></li>
-</ul>
+<p>对于 BMP 范围内的字符（码点范围：0x0000 到 0xFFFF），UTF-16 采用直接存储的方式，将 Unicode 码点转换为 2 字节的二进制数据。</p>
+<p>举例说明：</p>
+<ol>
+<li>字符 <strong>A</strong><br>它的 Unicode 码点是 <strong>U+0041</strong>，直接将 <strong>0x41</strong> 保存到内存中。</li>
+</ol>
 <p><strong>辅助平面字符的编码规则：</strong></p>
 <p>对于辅助平面的字符（码点范围：0x10000 到 0x10FFFF），UTF-16 采用了一种称为代理对（Surrogate Pair）的编码机制。这种机制的设计非常巧妙：</p>
 <ol>
-<li><p>首先，UTF-16 在 BMP 中预留了一个特殊的区域（U+D800 到 U+DFFF），这个区域被称为代理区，专门用于代理对编码。</p>
+<li><p>首先，UTF-16 在 BMP 中预留了一个特殊的区域（U+D800 到 U+DFFF），这个区域不存储任何字符，它被称为代理区，专门用于代理对编码。</p>
 </li>
 <li><p>代理对编码的具体步骤：</p>
 <ul>
@@ -121,13 +154,46 @@
 </ul>
 </li>
 </ol>
-<p>以 <code>🍑</code> (U+1F351) 为例：</p>
+<p>举例说明：</p>
 <ol>
-<li>0x1F351 - 0x10000 &#x3D; 0xF351(0b1111 0011 0101 0001)；</li>
-<li>高 10 位：0x3C(0b00 0011 1100) + 0xD800 &#x3D; 0xD83C；</li>
-<li>低 10 位：0x351(0b0011 0101 0001) + 0xDC00 &#x3D; 0xDF51；</li>
-<li>最终编码：0xD83CDF51；</li>
+<li>表情符号 <strong>🍑</strong></li>
 </ol>
+<ul>
+<li>Unicode 码点：<strong>U+1F351</strong></li>
+<li>步骤一：计算偏移量<ul>
+<li><strong>0x1F351</strong> - <strong>0x10000</strong> &#x3D; <strong>0xF351</strong>（二进制：<code>0b1111 0011 0101 0001</code>）</li>
+</ul>
+</li>
+<li>步骤二：分割为低 10 位和高 10 位<ul>
+<li>低 10 位：<code>0b11 0101 0001</code> &#x3D; <strong>0x351</strong></li>
+<li>高 10 位：<code>0b00 0011 1100</code> &#x3D; <strong>0x3C</strong></li>
+</ul>
+</li>
+<li>步骤三：计算代理对<ul>
+<li>低代理 &#x3D; <strong>0x351</strong> + <strong>0xDC00</strong> &#x3D; <strong>0xDF51</strong></li>
+<li>高代理 &#x3D; <strong>0x3C</strong> + <strong>0xD800</strong> &#x3D; <strong>0xD83C</strong></li>
+</ul>
+</li>
+<li>最终 UTF-16 编码：<strong>0xD83CDF51</strong>（4 字节）</li>
+</ul>
+<p>UTF-16 如何判断一个字符是 BMP 字符还是辅助平面字符呢？解析器采用”前瞻判断”的方式：</p>
+<ol>
+<li>读取前 2 字节（高代理部分），检查其值是否在代理区范围内（<strong>0xD800</strong> ~ <strong>0xDFFF</strong>）</li>
+<li>如果在代理区内，则：<ul>
+<li>继续读取后 2 字节（低代理部分）</li>
+<li>将高代理和低代理组合，按照代理对规则解码为辅助平面字符</li>
+</ul>
+</li>
+<li>如果不在代理区内，则：<ul>
+<li>直接将该 2 字节值作为 BMP 字符的码点</li>
+</ul>
+</li>
+</ol>
+<p>举例：</p>
+<ul>
+<li>遇到 <strong>0xD83C</strong>：在代理区范围内（<strong>0xD800</strong> ~ <strong>0xDBFF</strong> 为高代理区），继续读取 <strong>0xDF51</strong>，组合解码得到 <strong>U+1F351</strong>（🍑）</li>
+<li>遇到 <strong>0x0041</strong>：不在代理区范围内，直接解析为 <strong>U+0041</strong>（A）</li>
+</ul>
 <blockquote>
 <p>注：UTF-16 编码需要考虑字节序问题，这里使用 Big endian 表示。关于字节序的详细说明，请参考后文的 <a href="#%E5%AD%97%E8%8A%82%E5%BA%8F">字节序</a> 小节。</p>
 </blockquote>
